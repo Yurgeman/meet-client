@@ -2,7 +2,7 @@
   <div class="-scroll">
     <div class="app-welcome">
       <h1>Embed Briefing</h1>
-      <iframe class="iframe" :src="url"></iframe>
+      <iframe class="iframe" :src="url" ></iframe>
       <div class="url">
         <a :href="url" targe="_blank">{{ url }}</a>
       </div>
@@ -127,7 +127,7 @@ export default {
       )
     },
     code() {
-      return `<iframe 
+      return `<iframe
   src="${this.url}"
   allow="camera; microphone; fullscreen; speaker; display-capture"
 ></iframe>`
