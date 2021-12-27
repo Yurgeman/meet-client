@@ -8,7 +8,7 @@
              :href="url"
              id="link"
              class="link"
-          >meet.docsme
+          >conf.docsme
             <span class="dot">.</span>
             ru
             <span class="slash">/</span>

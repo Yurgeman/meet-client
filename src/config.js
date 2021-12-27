@@ -28,7 +28,7 @@ export const RELEASE = process.env.VUE_APP_RELEASE
 
 export const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN
 
-export const ROOM_URL = process.env.VUE_APP_ROOM_URL || "https://meet.docsme.ru/ng/"
+export const ROOM_URL = process.env.VUE_APP_ROOM_URL || "https://conf.docsme.ru/ng/"
 export const ROOM_PATH = process.env.VUE_APP_ROOM_PATH || "/ng/"
 
 export const SHOW_FULLSCREEN = isTrue(process.env.VUE_APP_SHOW_FULLSCREEN, true)

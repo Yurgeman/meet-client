@@ -23,7 +23,7 @@ export class WebRTC extends Emitter {
 
   static async checkStatus () {
     let socket = io(SIGNAL_SERVER_URL, {
-      transports: [ 'websocket' ]
+      //transports: [ 'websocket' ]
     })
 
     return new Promise(( resolve ) => {
