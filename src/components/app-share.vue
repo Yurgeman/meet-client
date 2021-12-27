@@ -16,7 +16,7 @@
     </div>
     <p>{{ l.share.qr_info }}</p>
     <p class="qrcode" v-html="qrcode">QRCode</p>
-    <p v-html="l.share.feedback"></p>
+    <!--<p v-html="l.share.feedback"></p>-->
   </div>
 </template>
 
