@@ -35,7 +35,7 @@
       <div class="footer links">
       </div>
     </div>
-    <app-help></app-help>
+    
   </div>
 </template>
 
