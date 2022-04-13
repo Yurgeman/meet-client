@@ -53,7 +53,7 @@
              class="feather feather-shield">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
         </svg>
-        {{ fingerprint.substr(fingerprint.length - 4, 4) }}
+        {{ fingerprint.substr( fingerprint.length - 4, 4 ) }}
       </label>
       <label title="Verification code"
              class="-long"
@@ -113,10 +113,10 @@
 
 <script>
 import { trackSilentException } from '../bugs'
+import enableInlineVideo        from 'iphone-inline-video'
+import { Logger }               from '../lib/logger'
 
-import { Logger } from '../lib/logger'
-
-const log = Logger('app:app-peer')
+const log = Logger( 'app:app-peer' )
 
 window.screenshotNumber = 0
 
@@ -162,56 +162,58 @@ export default {
   methods: {
     playVideo ( video ) {
       let startPlayPromise = video.play()
-      log('play', startPlayPromise)
-      if (startPlayPromise !== undefined) {
+      log( 'play', startPlayPromise )
+      if ( startPlayPromise !== undefined ) {
         startPlayPromise
-          .then(() => {
+          .then( () => {
             // Start whatever you need to do only after playback
             // has begun.
-          })
-          .catch(( error ) => {
-            if (error.name === 'NotAllowedError') {
+          } )
+          .catch( ( error ) => {
+            if ( error.name === 'NotAllowedError' ) {
               this.showPlayButton = true
             }
             else {
-              trackSilentException(error)
+              trackSilentException( error )
             }
-          })
+          } )
       }
     },
     async doConnectStream ( stream ) {
-      log('doConnectStream', this.title, stream)
-      if (stream) {
+      log( 'doConnectStream', this.title, stream )
+      if ( stream ) {
         try {
           await this.$nextTick()
 
           let video = this.$refs.video
-          log('connectStreamToVideoElement', stream, video)
-          if (stream) {
-            if ('srcObject' in video) {
+          log( 'connectStreamToVideoElement', stream, video )
+          if ( stream ) {
+            if ( 'srcObject' in video ) {
               video.srcObject = stream
             }
             else {
-              video.src = window.URL.createObjectURL(stream) // for older browsers
+              video.src = window.URL.createObjectURL( stream ) // for older browsers
             }
+            enableInlineVideo( video, { iPad: true } )
 
             // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
             // But if the user allows to access camera it should be fine
             // https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-            video.onloadedmetadata = ( e ) => this.playVideo(video)
-            video.onloadeddata     = ( e ) => this.playVideo(video)
+            video.onloadedmetadata = ( e ) => this.playVideo( video )
+            video.onloadeddata     = ( e ) => this.playVideo( video )
+
           }
         }
-        catch (err) {
-          trackSilentException(err)
+        catch ( err ) {
+          trackSilentException( err )
         }
       }
     },
     handleClick () {
-      if (this.showPlayButton) {
+      if ( this.showPlayButton ) {
         this.doPlay()
       }
-      else if (this.state.maximized === this.id) {
+      else if ( this.state.maximized === this.id ) {
         this.state.maximized = ''
       }
       else {
@@ -223,12 +225,12 @@ export default {
     },
     async doPlay () {
       try {
-        log('force play manually')
+        log( 'force play manually' )
         this.$refs?.video?.play()
         this.showPlayButton = false
       }
-      catch (err) {
-        trackSilentException(err)
+      catch ( err ) {
+        trackSilentException( err )
       }
     }
   },
@@ -237,13 +239,13 @@ export default {
     //   await this.$nextTick()
     //   await this.doConnectStream(this.stream)
     // })
-    if (this.stream) {
-      await this.doConnectStream(this.stream)
+    if ( this.stream ) {
+      await this.doConnectStream( this.stream )
     }
   },
   watch: {
     stream ( value ) {
-      this.doConnectStream(value)
+      this.doConnectStream( value )
     }
   }
 }
