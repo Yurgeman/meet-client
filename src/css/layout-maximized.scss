@@ -3,6 +3,7 @@
 .videos {
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-end;
   justify-content: flex-end;
@@ -13,19 +14,20 @@
 
     &.-maximized {
       position: absolute;
-      top: 0.25rem;
-      left: 0.25rem;
+      top: 0;
+      left: 0;
       bottom: 0;
-      right: 0.25rem;
+      right: 0;
       z-index: 1;
     }
 
     &:not(.-maximized) {
-      height: 6rem;
-      width: 6rem;
+      height: 5rem;
+      width: 5rem;
       flex-grow: 0;
       flex-shrink: 0;
       margin: 0;
+      border-radius: 500px;
 
       .video {
         border: 0.5px solid #272727;
