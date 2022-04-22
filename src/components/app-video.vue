@@ -32,41 +32,41 @@
            class="-icon-placeholder">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
       </svg>
-      <label>Waiting for connection</label>
+      <label>Ожидание подключения</label>
     </div>
     <div v-if="fingerprint"
          class="video video-placeholder  video-fingerprint -content-placeholder  -overlay -info"
          v-show="!state.maximized">
-      <label title="Verification code"
-             class="-short"
-             @click.stop.prevent="doToggleShow"
-             v-show="!showCode">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             width="24"
-             height="24"
-             viewBox="0 0 24 24"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2"
-             stroke-linecap="round"
-             stroke-linejoin="round"
-             class="feather feather-shield">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-        </svg>
-        {{ fingerprint.substr( fingerprint.length - 4, 4 ) }}
-      </label>
-      <label title="Verification code"
-             class="-long"
-             @click.stop.prevent="doToggleShow"
-             v-show="showCode">If the person you see here confirms to see the same ID, you are securely
-        connected:<br/>
-        <tt>{{ fingerprint }}</tt>
-      </label>
-      <label title="Name"
-             class="-short"
-             style="right: 5rem">
-        {{ name }}
-      </label>
+      <!--<label title="Verification code"-->
+      <!--       class="-short"-->
+      <!--       @click.stop.prevent="doToggleShow"-->
+      <!--       v-show="!showCode">-->
+      <!--  <svg xmlns="http://www.w3.org/2000/svg"-->
+      <!--       width="24"-->
+      <!--       height="24"-->
+      <!--       viewBox="0 0 24 24"-->
+      <!--       fill="none"-->
+      <!--       stroke="currentColor"-->
+      <!--       stroke-width="2"-->
+      <!--       stroke-linecap="round"-->
+      <!--       stroke-linejoin="round"-->
+      <!--       class="feather feather-shield">-->
+      <!--    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>-->
+      <!--  </svg>-->
+      <!--  {{ fingerprint.substr( fingerprint.length - 4, 4 ) }}-->
+      <!--</label>-->
+      <!--<label title="Verification code"-->
+      <!--       class="-long"-->
+      <!--       @click.stop.prevent="doToggleShow"-->
+      <!--       v-show="showCode">If the person you see here confirms to see the same ID, you are securely-->
+      <!--  connected:<br/>-->
+      <!--  <tt>{{ fingerprint }}</tt>-->
+      <!--</label>-->
+      <!--<label title="Name"-->
+      <!--       class="-short"-->
+      <!--       style="right: 5rem">-->
+      <!--  {{ name }}-->
+      <!--</label>-->
     </div>
     <div
       v-if="state.muteVideo && id === 'self'"

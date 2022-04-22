@@ -40,15 +40,25 @@ body {
   transform: translateX(-50%);
   background-color: #272727;
   border-radius: 500px;
-  padding: 0.5rem;
-  display: flex;
-  gap: 1rem;
+  padding: 0.5rem 1rem;
+
+  & > * {
+    display: flex;
+    gap: .5rem;
+  }
+
+  @media (max-width: 480px) {
+    left: 0;
+    transform: none;
+    margin-left: 1rem;
+  }
+
 }
 
 .tool {
   color: #f8f8f8;
   width: 3rem !important;
-  height: 3rem !important;
+  height: 3rem;
   font-size: 1.5rem;
   background: #272727;
   border-radius: 500px;
@@ -66,12 +76,23 @@ body {
     stroke-width: 1.5;
   }
 
-  @include mediaMobile {
-    width: 2rem;
-    height: 2rem;
+  //@include mediaMobile {
+  //  width: 2rem;
+  //  height: 2rem;
+  //  font-size: 1rem;
+  //  margin-left: 0;
+  //  margin-right: 0;
+  //}
+  @media (max-width: 480px) {
+    width: 2.2rem !important;
+    height: 2.2rem;
     font-size: 1rem;
     margin-left: 0;
     margin-right: 0;
+    svg {
+      width: 1.3rem !important;
+      height: 1.3rem;
+    }
   }
 
   &.-off {
