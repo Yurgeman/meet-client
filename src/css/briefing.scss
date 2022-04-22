@@ -249,17 +249,26 @@ body {
       padding: 0;
       margin: 0;
       stroke: currentColor;
-      stroke-width: 1;
+      //stroke-width: 1;
       text-align: center;
       width: 4rem !important;
       height: 4rem;
       color: white;
+      stroke-width: 1.6;
       animation: blink 1000ms infinite;
+      @media (max-width: 480px) {
+        width: 2rem !important;
+        height: 2rem;
+
+      }
     }
 
     label {
       display: block;
       margin-top: 1rem;
+      @media (max-width: 480px) {
+        display: none;
+      }
     }
   }
 }
