@@ -11,15 +11,13 @@
       xclass="panel -left panel-settings"
       :active="mode === 'settings'"
       :title="l.settings.title"
-      @close="mode = ''"
-    >
+      @close="mode = ''">
       <app-settings></app-settings>
     </sea-modal>
 
     <div
       class="-fit vstack"
-      :data-mode="state.maximized ? 'maximized' : 'default'"
-    >
+      :data-mode="state.maximized ? 'maximized' : 'default'">
       <div class="-fit stack videos -relative">
         <app-video
           v-if="videoAllowed && state.stream"
@@ -27,8 +25,7 @@
           muted
           :mirrored="state.deviceVideo !== 'desktop'"
           title="Local"
-          id="self"
-        />
+          id="self"/>
 
         <app-video
           v-for="peer in peers"
@@ -36,13 +33,11 @@
           :id="peer.remote"
           :stream="peer && peer.peer && peer.peer.stream"
           :fingerprint="peer && peer.peer && peer.peer.fingerprint"
-          :name="peer && peer.peer && peer.peer.name"
-        />
+          :name="peer && peer.peer && peer.peer.name"/>
 
         <div
           class="message-container -error"
-          v-if="!state.screenshots && state.requestBugTracking"
-        >
+          v-if="!state.screenshots && state.requestBugTracking">
           <div class="message">
             An error occurred. Please help us fixing it by allowing to send the
             details to us. This option is also available in the settings.
@@ -73,12 +68,10 @@
             !state.screenshots &&
             mode !== 'share' &&
             state.showInviteHint
-          "
-        >
+          ">
           <div
             class="message"
-            v-html="l.share.message.replace('$symbol$', symbol)"
-          ></div>
+            v-html="l.share.message.replace('$symbol$', symbol)"></div>
         </div>
       </div>
 
@@ -390,6 +383,7 @@ export default {
     doQuit() {
       if (confirm("Really quit this session?")) {
         //location.assign("/ng/")
+        window.parent.postMessage('close', '*');
       }
     },
     doReload() {
