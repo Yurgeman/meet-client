@@ -77,11 +77,11 @@ export async function getUserMedia(
     if (name === "NotAllowedError") {
       return {
         error:
-          "You denied access to your camera and microphone. Please check your setup.",
+          "Доступ к камере и микрофону запрещен. Пожалуйста, проверьте свои настройки.",
       }
     } else if (name === "NotFoundError") {
       return {
-        error: "No camera or microphone has been found!",
+        error: "Ни камера, ни микрофон не найдены!",
       }
     }
     trackException(err)
@@ -118,7 +118,7 @@ export async function getDisplayMedia(
   try {
     if (!navigator?.mediaDevices?.getDisplayMedia) {
       return {
-        error: "Accessing the desktop is not available.",
+        error: "Доступ к рабочему столу недоступен.",
       }
     }
     // Solution via https://stackoverflow.com/a/47958949/140927
@@ -131,11 +131,11 @@ export async function getDisplayMedia(
     if (name === "NotAllowedError") {
       return {
         error:
-          "You denied access to your camera and microphone. Please check your setup.",
+          "Доступ к камере и микрофону запрещен. Пожалуйста, проверьте свои настройки.",
       }
     } else if (name === "NotFoundError") {
       return {
-        error: "No camera or microphone has been found!",
+        error: "Ни камера, ни микрофон не найдены!",
       }
     }
     trackException(err)
