@@ -8,9 +8,9 @@ window.sentry = Sentry
 export function setupSentry({ dsn, Vue } = {}) {
   assert(dsn)
   assert(Vue)
-  Sentry.init({
+  Sentry.init( {
     dsn,
-    release: RELEASE,
-    integrations: [new VueIntegration({ Vue, attachProps: true })],
-  })
+    release:      RELEASE,
+    integrations: [ new VueIntegration( { Vue, attachProps: true } ) ]
+  } )
 }

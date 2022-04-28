@@ -39,11 +39,9 @@
           class="message-container -error"
           v-if="!state.screenshots && state.requestBugTracking">
           <div class="message">
-            An error occurred. Please help us fixing it by allowing to send the
-            details to us. This option is also available in the settings.
-            Thanks!
-            <u @click="doAllow(true)">Allow</u> |
-            <u @click="doAllow(false)">Deny</u>
+            Произошла ошибка.
+            <!--<u @click="doAllow(true)">Allow</u> |-->
+            <!--<u @click="doAllow(false)">Deny</u>-->
           </div>
         </div>
 

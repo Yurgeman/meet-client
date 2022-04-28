@@ -31,8 +31,8 @@ export function isAllowedBugTracking() {
 }
 
 export function setAllowedBugTracking(
-  allowed = true,
-  reloadMessage = "Reload to activate changes"
+  allowed = false,
+  reloadMessage = "Перезагрузите, чтобы активировать изменения"
 ) {
   log("setAllowedBugTracking", allowed)
   if (allowed) {
@@ -59,7 +59,7 @@ export function trackException(e, silent = false) {
   }
   if (window.sentry) {
     log("sentry exception", e)
-    window.sentry.captureException(e)
+    //window.sentry.captureException(e)
   } else {
     collectedErrors.push(e)
     messages.emit("requestBugTracking")
