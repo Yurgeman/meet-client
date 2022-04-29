@@ -31,9 +31,9 @@ export const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN
 export const ROOM_URL  = process.env.VUE_APP_ROOM_URL || 'https://conf.docsme.ru/ng/'
 export const ROOM_PATH = process.env.VUE_APP_ROOM_PATH || '/ng/'
 
-export const SHOW_FULLSCREEN      = isTrue( process.env.VUE_APP_SHOW_FULLSCREEN, true )
-export const SHOW_INVITATION      = isTrue( process.env.VUE_APP_SHOW_INVITATION, true )
-export const SHOW_INVITATION_HINT = isTrue( process.env.VUE_APP_SHOW_INVITATION_HINT, true )
-export const SHOW_SETTINGS        = isTrue( process.env.VUE_APP_SHOW_SETTINGS, true )
-export const SHOW_SHARE           = isTrue( process.env.VUE_APP_SHOW_SHARE, true )
-export const SHOW_CHAT            = isTrue( process.env.VUE_APP_SHOW_CHAT, true )
+export const SHOW_FULLSCREEN      = isTrue( process.env.VUE_APP_SHOW_FULLSCREEN, false )
+export const SHOW_INVITATION      = isTrue( process.env.VUE_APP_SHOW_INVITATION, false )
+export const SHOW_INVITATION_HINT = isTrue( process.env.VUE_APP_SHOW_INVITATION_HINT, false )
+export const SHOW_SETTINGS        = isTrue( process.env.VUE_APP_SHOW_SETTINGS, false )
+export const SHOW_SHARE           = isTrue( process.env.VUE_APP_SHOW_SHARE, false )
+export const SHOW_CHAT            = isTrue( process.env.VUE_APP_SHOW_CHAT, false )

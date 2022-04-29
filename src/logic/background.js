@@ -161,7 +161,7 @@ export async function startBlurTransform(stream) {
         let el = document.createElement("div")
         // el.className = 'transform debugTransform'
         el.innerHTML = `
-        <video id="transformVideo" playsinline></video>
+        <video id="transformVideo" playsinline autoplay></video>
         <canvas id="transformOutput"></canvas>
       `
         document.body.appendChild(el)

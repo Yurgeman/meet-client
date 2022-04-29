@@ -4,7 +4,6 @@
        @click="handleClick">
     <div v-if="state.screenshots"
          :style="`background:url(/faces/${screenshotNumber}.jpg); background-size: cover; background-position: center;`"
-         alt=""
          class="video"
          :class="{ '-mirrored': mirrored }"/>
     <video
@@ -122,6 +121,7 @@ window.screenshotNumber = 0
 
 export default {
   name:  'app-video',
+
   props: {
     stream:      {
       type:    MediaStream | Object,
@@ -152,6 +152,7 @@ export default {
       type: String
     }
   },
+
   data () {
     return {
       screenshotNumber: ++window.screenshotNumber,
@@ -159,7 +160,9 @@ export default {
       showPlayButton:   false
     }
   },
+
   methods: {
+
     playVideo ( video ) {
       let startPlayPromise = video.play()
       log( 'play', startPlayPromise )
@@ -179,6 +182,7 @@ export default {
           } )
       }
     },
+
     async doConnectStream ( stream ) {
       log( 'doConnectStream', this.title, stream )
       if ( stream ) {
@@ -209,6 +213,7 @@ export default {
         }
       }
     },
+
     handleClick () {
       if ( this.showPlayButton ) {
         this.doPlay()
@@ -220,9 +225,11 @@ export default {
         this.state.maximized = this.id
       }
     },
+
     doToggleShow ( ev ) {
       this.showCode = !this.showCode
     },
+
     async doPlay () {
       try {
         log( 'force play manually' )
@@ -234,6 +241,7 @@ export default {
       }
     }
   },
+
   async mounted () {
     // webrtc.on('stream', async () => {
     //   await this.$nextTick()
@@ -243,6 +251,7 @@ export default {
       await this.doConnectStream( this.stream )
     }
   },
+
   watch: {
     stream ( value ) {
       this.doConnectStream( value )
