@@ -45,14 +45,16 @@
           </div>
         </div>
 
-        <div class="message-container -error" v-else-if="state.error">
+        <div class="message-container -error"
+             v-else-if="state.error">
           <div class="message">
             {{ state.error }}
             <u @click="doReload">Reload page</u>
           </div>
         </div>
 
-        <div class="message-container" v-else-if="state.upgrade">
+        <div class="message-container"
+             v-else-if="state.upgrade">
           <div class="message">
             A new version of this web app has been downloaded.
             <u @click="doReload">Reload page</u>
@@ -91,15 +93,42 @@
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <line x1="4" y1="21" x2="4" y2="14"></line>
-            <line x1="4" y1="10" x2="4" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12" y2="3"></line>
-            <line x1="20" y1="21" x2="20" y2="16"></line>
-            <line x1="20" y1="12" x2="20" y2="3"></line>
-            <line x1="1" y1="14" x2="7" y2="14"></line>
-            <line x1="9" y1="8" x2="15" y2="8"></line>
-            <line x1="17" y1="16" x2="23" y2="16"></line>
+            <line x1="4"
+                  y1="21"
+                  x2="4"
+                  y2="14"></line>
+            <line x1="4"
+                  y1="10"
+                  x2="4"
+                  y2="3"></line>
+            <line x1="12"
+                  y1="21"
+                  x2="12"
+                  y2="12"></line>
+            <line x1="12"
+                  y1="8"
+                  x2="12"
+                  y2="3"></line>
+            <line x1="20"
+                  y1="21"
+                  x2="20"
+                  y2="16"></line>
+            <line x1="20"
+                  y1="12"
+                  x2="20"
+                  y2="3"></line>
+            <line x1="1"
+                  y1="14"
+                  x2="7"
+                  y2="14"></line>
+            <line x1="9"
+                  y1="8"
+                  x2="15"
+                  y2="8"></line>
+            <line x1="17"
+                  y1="16"
+                  x2="23"
+                  y2="16"></line>
           </svg>
         </sea-link>
         <div class="-fit">
@@ -122,7 +151,10 @@
               <path
                 d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
               ></path>
-              <line x1="1" y1="1" x2="23" y2="23"></line>
+              <line x1="1"
+                    y1="1"
+                    x2="23"
+                    y2="23"></line>
             </svg>
             <svg
               v-else
@@ -136,10 +168,16 @@
               stroke-linejoin="round"
             >
               <polygon points="23 7 16 12 23 17 23 7"></polygon>
-              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+              <rect x="1"
+                    y="5"
+                    width="15"
+                    height="14"
+                    rx="2"
+                    ry="2"></rect>
             </svg>
           </sea-link>
-          <sea-link class="tool tool-close" @action="doQuit">
+          <sea-link class="tool tool-close"
+                    @action="doQuit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
@@ -150,8 +188,14 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
+              <line x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"></line>
+              <line x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"></line>
             </svg>
 
           </sea-link>
@@ -171,15 +215,24 @@
               stroke-linecap="round"
               stroke-linejoin="round"
             >
-              <line x1="1" y1="1" x2="23" y2="23"></line>
+              <line x1="1"
+                    y1="1"
+                    x2="23"
+                    y2="23"></line>
               <path
                 d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"
               ></path>
               <path
                 d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"
               ></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
+              <line x1="12"
+                    y1="19"
+                    x2="12"
+                    y2="23"></line>
+              <line x1="8"
+                    y1="23"
+                    x2="16"
+                    y2="23"></line>
             </svg>
             <svg
               v-else
@@ -196,8 +249,14 @@
                 d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
               ></path>
               <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-              <line x1="12" y1="19" x2="12" y2="23"></line>
-              <line x1="8" y1="23" x2="16" y2="23"></line>
+              <line x1="12"
+                    y1="19"
+                    x2="12"
+                    y2="23"></line>
+              <line x1="8"
+                    y1="23"
+                    x2="16"
+                    y2="23"></line>
             </svg>
           </sea-link>
         </div>
@@ -261,7 +320,8 @@
               d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
             ></path>
           </svg>
-          <div v-if="unreadMessages" class="unread-msg"></div>
+          <div v-if="unreadMessages"
+               class="unread-msg"></div>
         </sea-link>
 
         <sea-link
@@ -282,7 +342,10 @@
           >
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <polyline points="16 6 12 2 8 6"></polyline>
-            <line x1="12" y1="2" x2="12" y2="15"></line>
+            <line x1="12"
+                  y1="2"
+                  x2="12"
+                  y2="15"></line>
           </svg>
         </sea-link>
       </div>
@@ -310,203 +373,207 @@
 </template>
 
 <script>
-import { messages } from "../lib/emitter"
-import { createLinkForRoom, shareLink } from "../lib/share"
-import { setup } from "../state"
-import SeaButton from "../ui/sea-button"
-import SeaLink from "../ui/sea-link"
-import SeaModal from "../ui/sea-modal"
-import AppVideo from "./app-video"
-import { setAllowedBugTracking } from "../bugs"
-import { setBackgroundImage } from "../logic/background"
+import { messages }                     from '../lib/emitter'
+import { createLinkForRoom, shareLink } from '../lib/share'
+import { setup }                        from '../state'
+import SeaButton                        from '../ui/sea-button'
+import SeaLink                          from '../ui/sea-link'
+import SeaModal                         from '../ui/sea-modal'
+import AppVideo                         from './app-video'
+import { setAllowedBugTracking }        from '../bugs'
+import { setBackgroundImage }           from '../logic/background'
 
-import { Logger } from "../lib/logger"
-const log = Logger("app:app-sidebar")
+import { Logger } from '../lib/logger'
+
+const log = Logger( 'app:app-sidebar' )
 
 export default {
-  name: "app-main",
+  name:       'app-main',
   components: {
     AppSettings: () =>
-      import(/* webpackChunkName: 'settings' */ "./app-settings"),
-    AppShare: () => import(/* webpackChunkName: 'share' */ "./app-share"),
-    AppChat: () => import(/* webpackChunkName: 'chat' */ "./app-chat"),
+                   import(/* webpackChunkName: 'settings' */ './app-settings'),
+    AppShare:    () => import(/* webpackChunkName: 'share' */ './app-share'),
+    AppChat:     () => import(/* webpackChunkName: 'chat' */ './app-chat'),
     SeaLink,
     SeaModal,
     SeaButton,
-    AppVideo,
+    AppVideo
   },
-  data() {
+  data () {
     return {
-      mode: "",
-      settings: false,
-      share: false,
-      conn: null,
-      dragOver: false,
+      mode:               '',
+      settings:           false,
+      share:              false,
+      conn:               null,
+      dragOver:           false,
       supportsFullscreen: document.fullscreenEnabled,
-      isFullScreen: false,
-      fullscreenHandler: null,
+      isFullScreen:       false,
+      fullscreenHandler:  null,
       symbol:
-        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
-      name: "",
-      unreadMessages: false,
+                          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
+      name:               '',
+      unreadMessages:     false
     }
   },
   computed: {
-    hasPeers() {
-      return Object.keys(this.state.status).length > 0
+    hasPeers () {
+      return Object.keys( this.state.status ).length > 0
     },
-    peers() {
-      return this.state.screenshots ? [2, 3] : this.state.status
+    peers () {
+      return this.state.screenshots ? [ 2, 3 ] : this.state.status
     },
-    videoAllowed() {
-      if (window.webkit != null) {
-        return this.mode === ""
+    videoAllowed () {
+      if ( window.webkit != null ) {
+        return this.mode === ''
       }
       return true
-    },
+    }
   },
-  methods: {
-    doShare() {
-      shareLink(createLinkForRoom(this.state.room))
+  methods:  {
+    doShare () {
+      shareLink( createLinkForRoom( this.state.room ) )
     },
-    doVideo() {
+    doVideo () {
       this.state.muteVideo = !this.state.muteVideo
-      messages.emit("updateStream")
+      messages.emit( 'updateStream' )
     },
-    doAudio() {
+    doAudio () {
       this.state.muteAudio = !this.state.muteAudio
-      messages.emit("updateStream")
+      messages.emit( 'updateStream' )
     },
     // TODO: reformat quit
-    doQuit() {
-      if (confirm("Really quit this session?")) {
+    doQuit () {
+      if ( confirm( 'Really quit this session?' ) ) {
         //location.assign("/ng/")
-        window.parent.postMessage('close', '*');
+        window.parent.postMessage( { type: 'close', id: this.state.room }, '*' )
+        //window.parent.postMessage('close', '*');
       }
     },
-    doReload() {
+    doReload () {
       location.reload()
     },
-    doAllow(allow) {
-      if (allow) {
-        setAllowedBugTracking(allow)
+    doAllow ( allow ) {
+      if ( allow ) {
+        setAllowedBugTracking( allow )
       }
       this.state.requestBugTracking = false
     },
-    doToggleFullScreen() {
-      if (!document.fullscreenElement) {
+    doToggleFullScreen () {
+      if ( !document.fullscreenElement ) {
         document.documentElement.requestFullscreen()
-      } else {
-        if (document.exitFullscreen) {
+      }
+      else {
+        if ( document.exitFullscreen ) {
           document.exitFullscreen()
         }
       }
     },
-    doTogglePanel(mode = "settings") {
-      this.mode = !mode || this.mode === mode ? "" : mode
+    doTogglePanel ( mode = 'settings' ) {
+      this.mode = !mode || this.mode === mode ? '' : mode
     },
-    onDragOver(ev) {
+    onDragOver ( ev ) {
       ev.preventDefault()
-      ev.dataTransfer.dropEffect = "copy"
-      this.dragOver = true
+      ev.dataTransfer.dropEffect = 'copy'
+      this.dragOver              = true
     },
-    onDragEnd(ev) {
+    onDragEnd ( ev ) {
       this.dragOver = false
       ev.preventDefault()
     },
-    onDrop(ev) {
+    onDrop ( ev ) {
       this.dragOver = false
       ev.preventDefault()
       let dataProvider = ev.dataTransfer || ev.clipboardData
-      if (dataProvider) {
+      if ( dataProvider ) {
         const files = dataProvider?.files || []
-        if (files.length) {
-          let url = URL.createObjectURL(files[0])
-          setBackgroundImage(url)
+        if ( files.length ) {
+          let url = URL.createObjectURL( files[ 0 ] )
+          setBackgroundImage( url )
           this.state.backgroundImageURL = url
-          this.state.backgroundAuthor = ""
-          this.state.backgroundURL = ""
+          this.state.backgroundAuthor   = ''
+          this.state.backgroundURL      = ''
 
           // If just the background mode changes, don't restart the whole thing
           // if ((value && !prevValue) || (prevValue && !value)) {
-          if (this.state.backgroundImageURL !== "image") {
-            this.state.backgroundMode = "image"
-            messages.emit("switchMedia")
+          if ( this.state.backgroundImageURL !== 'image' ) {
+            this.state.backgroundMode = 'image'
+            messages.emit( 'switchMedia' )
           }
           // }
         }
       }
     },
-    didChangeFullscreen(ev) {},
-    toggleChat() {
-      if (this.mode === "chat") {
-        this.mode = ""
-      } else {
+    didChangeFullscreen ( ev ) {},
+    toggleChat () {
+      if ( this.mode === 'chat' ) {
+        this.mode = ''
+      }
+      else {
         this.unreadMessages = false
-        this.mode = "chat"
+        this.mode           = 'chat'
         this.focusChatInput()
       }
     },
-    updateUserInfo() {
-      messages.emit("userInfo", {
-        name: this.name,
-      })
+    updateUserInfo () {
+      messages.emit( 'userInfo', {
+        name: this.name
+      } )
     },
-    triggerChatFunctions() {
-      messages.on("newMessage", () => {
-        if (this.mode !== "chat") {
+    triggerChatFunctions () {
+      messages.on( 'newMessage', () => {
+        if ( this.mode !== 'chat' ) {
           this.unreadMessages = true
         }
-      })
+      } )
 
-      messages.on("userInfoUpdate", ({ peer, data }) => {
+      messages.on( 'userInfoUpdate', ( { peer, data } ) => {
         this.peers[
-          this.peers.findIndex((el) => el.remote === peer.local)
-        ].peer.name = data.data.name
-      })
+          this.peers.findIndex( ( el ) => el.remote === peer.local )
+          ].peer.name = data.data.name
+      } )
 
       // Update Local Name to Remote peers every 10 seconds for new peers
-      messages.on("requestUserInfo", () => {
+      messages.on( 'requestUserInfo', () => {
         this.updateUserInfo()
-      })
+      } )
     },
-    setName() {
-      let name = localStorage.getItem("name")
-      if (name) {
+    setName () {
+      let name = localStorage.getItem( 'name' )
+      if ( name ) {
         this.name = name
-        messages.emit("userInfo", {
-          name: name,
-        })
+        messages.emit( 'userInfo', {
+          name: name
+        } )
       }
     },
-    focusChatInput() {
+    focusChatInput () {
       if (
-        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
+        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test( navigator.userAgent )
       ) {
-        setTimeout(() => {
-          document.getElementById("message-input")?.focus()
-        }, 100)
+        setTimeout( () => {
+          document.getElementById( 'message-input' )?.focus()
+        }, 100 )
       }
-    },
+    }
   },
-  mounted() {
+  mounted () {
     this.setName()
     this.triggerChatFunctions()
 
-    setTimeout(async () => {
+    setTimeout( async () => {
       this.conn = await setup()
-    }, 50)
-    if (!this.hasPeers && !window.iPhone && this.state.showInviteOnStart) {
-      this.mode = "share"
+    }, 50 )
+    if ( !this.hasPeers && !window.iPhone && this.state.showInviteOnStart ) {
+      this.mode = 'share'
     }
-    this.fullscreenHandler = (ev) => {
+    this.fullscreenHandler = ( ev ) => {
       this.isFullScreen = !!document.fullscreenElement
     }
-    document.addEventListener("fullscreenchange", this.fullscreenHandler)
+    document.addEventListener( 'fullscreenchange', this.fullscreenHandler )
   },
-  beforeDestroy() {
-    document.removeEventListener("fullscreenchange", this.fullscreenHandler)
+  beforeDestroy () {
+    document.removeEventListener( 'fullscreenchange', this.fullscreenHandler )
     this.conn?.cleanup()
-  },
+  }
 }
 </script>
