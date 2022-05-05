@@ -130,7 +130,7 @@ export default {
     },
     code () {
       return `<iframe src="${ this.url }"
-        allow="camera; microphone; speaker; display-capture"></iframe>`
+        allow="camera; microphone; speaker; display-capture; autoplay"></iframe>`
     }
   },
   mounted () {

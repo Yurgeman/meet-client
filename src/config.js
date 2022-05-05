@@ -26,7 +26,7 @@ export const PRODUCTION = !DEBUG
 
 export const RELEASE = process.env.VUE_APP_RELEASE
 
-export const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN
+export const SENTRY_DSN = process.env.VUE_APP_SENTRY_DSN || 'https://aa3d6993437b4663928da67c6e99c2e5@o573729.ingest.sentry.io/6382533'
 
 export const ROOM_URL  = process.env.VUE_APP_ROOM_URL || 'https://conf.docsme.ru/ng/'
 export const ROOM_PATH = process.env.VUE_APP_ROOM_PATH || '/ng/'
