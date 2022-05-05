@@ -11,7 +11,7 @@ export function postMessageToParent(name, data = {}) {
       data,
     }
     log("postMessageToParent", info)
-    window.parent.postMessage(info)
+    window.parent.postMessage(info, '*')
   } catch (err) {
     log("postMessageToParent error", err)
   }
