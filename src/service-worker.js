@@ -60,7 +60,7 @@ self.addEventListener("push", function (event) {
   console.log("push", event)
   let message = event.data.json()
   event.waitUntil(
-    self.registration.showNotification("Brie.fi/ng", {
+    self.registration.showNotification("Conf.DocsMe.ru", {
       body: message.count + ' users in room "' + message.room + '" now',
       icon: "/android-chrome-512x512.png",
       data: {

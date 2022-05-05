@@ -20,12 +20,12 @@
   "theme_color": "#272727",
   "author": "Dirk Holtwick",
   "description": "Secure direct video chat",
-  "homepage_url": "https://brie.fi/",
+  "homepage_url": "https://conf.docsme.ru",
   "url": "https://conf.docsme.ru/",
   "lang": "EN",
   "screenshots": [
     {
-      "src": "https://brie.fi/sample.jpg",
+      "src": "https://conf.docsme.ru/sample.jpg",
       "type": "image/png",
       "size": "1478x1988",
       "description": "Screenshot Briefing App"
