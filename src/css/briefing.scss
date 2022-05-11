@@ -36,11 +36,11 @@ body {
   position: absolute;
   z-index: 10;
   bottom: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 1rem;
+  //transform: translateX(-50%);
   background-color: #272727;
   border-radius: 500px;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem;
 
   & > * {
     display: flex;
