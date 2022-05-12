@@ -44,7 +44,7 @@ body {
 
   & > * {
     display: flex;
-    gap: .5rem;
+    //gap: 0.5rem;
   }
 
   @media (max-width: 480px) {
@@ -52,7 +52,6 @@ body {
     transform: none;
     margin-left: 1rem;
   }
-
 }
 
 .tool {
@@ -259,7 +258,6 @@ body {
       @media (max-width: 480px) {
         width: 2rem !important;
         height: 2rem;
-
       }
     }
 
