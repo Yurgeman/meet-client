@@ -207,7 +207,7 @@ export default {
             } else {
               video.src = window.URL.createObjectURL(stream); // for older browsers
             }
-            enableInlineVideo(video, { iPad: true });
+            //enableInlineVideo(video, { iPad: true });
 
             // Keep in mind https://developers.google.com/web/updates/2017/09/autoplay-policy-changes
             // But if the user allows to access camera it should be fine
