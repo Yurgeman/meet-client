@@ -8,7 +8,8 @@
     :role="role"
     @mousedown="doBeforeClick"
     @click="doClick"
-    @contextmenu="doClick">
+    @contextmenu="doClick"
+  >
     <sea-symbol
       v-if="symbol || symbolLeft"
       :name="symbol || symbolLeft"
@@ -30,105 +31,104 @@
 
 <script>
 // import Popover from './sea-popover'
-import SeaSymbol          from './sea-symbol'
-import { trackException } from '../bugs'
+import SeaSymbol from "./sea-symbol";
+import { trackException } from "../bugs";
 
-import { Logger } from '../lib/logger'
+import { Logger } from "../lib/logger";
 
-const log = Logger('ui:button')
+const log = Logger("ui:button");
 
 // @action, @click
 
 export default {
-  name:       'sea-button',
+  name: "sea-button",
   components: { SeaSymbol },
-  props:      {
-    title:       {
-      type:    String,
-      default: ''
+  props: {
+    title: {
+      type: String,
+      default: "",
     },
-    theme:       {
-      default: 'primary'
+    theme: {
+      default: "primary",
     },
-    symbol:      {
-      type: String
+    symbol: {
+      type: String,
     },
-    symbolLeft:  {
-      type: String
+    symbolLeft: {
+      type: String,
     },
     symbolRight: {
-      type: String
+      type: String,
     },
-    role:        {
-      type:    String,
-      default: 'button',
-      validator ( value ) {
-        return [ 'button', 'link' ].includes(value)
-      }
+    role: {
+      type: String,
+      default: "button",
+      validator(value) {
+        return ["button", "link"].includes(value);
+      },
     },
-    active:      {
+    active: {
       // active state for selections
-      type:    Boolean,
-      default: false
+      type: Boolean,
+      default: false,
     },
-    passive:     {
+    passive: {
       // do not loose focus
-      type:    Boolean,
-      default: false
-    }
+      type: Boolean,
+      default: false,
+    },
   },
-  data () {
+  data() {
     return {
-      disabled:        false,
+      disabled: false,
       tooltipInstance: null,
-      hoverCount:      0
-    }
+      hoverCount: 0,
+    };
   },
   computed: {
-    slotted () {
-      return this.title || this.$slots?.default?.[ 0 ] != null
+    slotted() {
+      return this.title || this.$slots?.default?.[0] != null;
     },
-    classnames () {
+    classnames() {
       return {
-        [ `sea-${ this.role }` ]: true,
-        [ `-${ this.theme }` ]:   true,
-        '-active':                this.active === true,
-        '-has-title':             this.slotted
-      }
-    }
+        [`sea-${this.role}`]: true,
+        [`-${this.theme}`]: true,
+        "-active": this.active === true,
+        "-has-title": this.slotted,
+      };
+    },
   },
-  methods:  {
-    async doAction ( ev ) {
+  methods: {
+    async doAction(ev) {
       // this.hideTooltip()
-      if (this.disabled) return
-      this.disabled = true
+      if (this.disabled) return;
+      this.disabled = true;
       try {
         // ev.waitUntil = async () => null
-        await this.$nextTick()
-        this.$emit('click', ev)
-        this.$emit('action', ev)
-        this.$emit('update:active', !this.active)
+        await this.$nextTick();
+        this.$emit("click", ev);
+        this.$emit("action", ev);
+        this.$emit("update:active", !this.active);
         if (ev.waitUntil) {
-          await ev.waitUntil
+          await ev.waitUntil;
         }
+      } catch (err) {
+        trackException(err);
       }
-      catch (err) {
-        trackException(err)
-      }
-      this.disabled = false
-      log('click done', ev.waitUntil)
+      this.disabled = false;
+      log("click done", ev.waitUntil);
     },
-    async doClick ( ev ) {
+    async doClick(ev) {
       if (!this.passive) {
-        await this.doAction(ev)
+        await this.doAction(ev);
       }
     },
-    async doBeforeClick ( ev ) {
+    async doBeforeClick(ev) {
       if (this.passive) {
-        ev.preventDefault()
-        await this.doAction(ev)
+        ev.preventDefault();
+        await this.doAction(ev);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>

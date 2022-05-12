@@ -2,11 +2,9 @@
   <div class="-scroll">
     <div class="app-welcome">
       <h1>Embed Briefing</h1>
-      <iframe class="iframe"
-              :src="url"></iframe>
+      <iframe class="iframe" :src="url"></iframe>
       <div class="url">
-        <a :href="url"
-           targe="_blank">{{ url }}</a>
+        <a :href="url" targe="_blank">{{ url }}</a>
       </div>
       <div class="options">
         <sea-switch v-model="presetAudio">Audio</sea-switch>
@@ -15,12 +13,12 @@
         <sea-switch v-model="presetPrefs">Setting Button</sea-switch>
         <sea-switch v-model="presetShare">Share Button</sea-switch>
         <sea-switch v-model="presetChat">Share Chat</sea-switch>
-        <br/>
+        <br />
         <sea-switch v-model="presetInvite">Invite on Start</sea-switch>
       </div>
-      <div><br/>HTML code to be used in client</div>
+      <div><br />HTML code to be used in client</div>
       <pre class="code">{{ code }}</pre>
-      <div><br/>Status sent from iframe</div>
+      <div><br />Status sent from iframe</div>
       <pre class="code">{{ status }}</pre>
     </div>
   </div>
@@ -71,73 +69,73 @@
 
 <style>
 .iframe {
-  border:        1px solid #cccccc;
-  width:         Min(90vh, 90vw);
-  height:        Calc(0.75 * Min(90vh, 90vw));
+  border: 1px solid #cccccc;
+  width: Min(90vh, 90vw);
+  height: Calc(0.75 * Min(90vh, 90vw));
   margin-bottom: 1rem;
 }
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH, ROOM_URL, SHOW_FULLSCREEN } from '../config'
-import { generateName }                                from '../lib/names'
-import { onMessageFromFrame }                          from '../lib/iframe'
-import SeaSwitch                                       from '../ui/sea-switch'
+import { DEBUG, ROOM_PATH, ROOM_URL, SHOW_FULLSCREEN } from "../config";
+import { generateName } from "../lib/names";
+import { onMessageFromFrame } from "../lib/iframe";
+import SeaSwitch from "../ui/sea-switch";
 
 export default {
   components: {
-    SeaSwitch
+    SeaSwitch,
   },
-  data () {
+  data() {
     let defaultName = DEBUG
-      ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || 'development'
-      : generateName()
+      ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || "development"
+      : generateName();
     return {
       defaultName,
-      room:             defaultName,
-      presetAudio:      true,
-      presetVideo:      true,
+      room: defaultName,
+      presetAudio: true,
+      presetVideo: true,
       presetFullscreen: false,
-      presetInvite:     false,
-      presetPrefs:      false,
-      presetShare:      false,
-      presetChat:       false,
-      status:           {}
-    }
+      presetInvite: false,
+      presetPrefs: false,
+      presetShare: false,
+      presetChat: false,
+      status: {},
+    };
   },
   computed: {
-    url () {
+    url() {
       // const prefix = location.protocol + "//" + location.host + "/" + ROOM_PATH
-      let prefix = DEBUG ? ROOM_PATH : ROOM_URL
+      let prefix = DEBUG ? ROOM_PATH : ROOM_URL;
       return (
         prefix +
         this.defaultName +
-        '?audio=' +
-        Number( this.presetAudio ) +
-        '&video=' +
-        Number( this.presetVideo ) +
-        '&fs=' +
-        Number( this.presetFullscreen ) +
-        '&invite=' +
-        Number( this.presetInvite ) +
-        '&prefs=' +
-        Number( this.presetPrefs ) +
-        '&share=' +
-        Number( this.presetShare ) +
-        '&chat=' +
-        Number( this.presetChat )
-      )
+        "?audio=" +
+        Number(this.presetAudio) +
+        "&video=" +
+        Number(this.presetVideo) +
+        "&fs=" +
+        Number(this.presetFullscreen) +
+        "&invite=" +
+        Number(this.presetInvite) +
+        "&prefs=" +
+        Number(this.presetPrefs) +
+        "&share=" +
+        Number(this.presetShare) +
+        "&chat=" +
+        Number(this.presetChat)
+      );
     },
-    code () {
-      return `<iframe src="${ this.url }"
-        allow="camera; microphone; speaker; display-capture; autoplay"></iframe>`
-    }
+    code() {
+      return `<iframe src="${this.url}"
+        allow="camera; microphone; speaker; display-capture; autoplay"></iframe>`;
+    },
   },
-  mounted () {
-    onMessageFromFrame( 'status', ( data ) => {
-      console.log( 'new guest count', data )
-      this.status = data
-    } )
-  }
-}
+  mounted() {
+    onMessageFromFrame("status", (data) => {
+      console.log("new guest count", data);
+      this.status = data;
+    });
+  },
+};
 </script>

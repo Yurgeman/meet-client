@@ -78,8 +78,8 @@
 </template>
 
 <script>
-import { Logger } from "../lib/logger"
-const log = Logger("app:fa-textarea")
+import { Logger } from "../lib/logger";
+const log = Logger("app:fa-textarea");
 
 export default {
   name: "sea-input-base",
@@ -115,25 +115,25 @@ export default {
   data() {
     return {
       newValue: this.value,
-    }
+    };
   },
   computed: {
     computedValue: {
       get() {
         // log('get value', this.newValue, this.type)
-        return this.newValue
+        return this.newValue;
       },
       set(value) {
-        log("set value", value)
-        this.newValue = value
-        this.$emit("input", value)
+        log("set value", value);
+        this.newValue = value;
+        this.$emit("input", value);
         // !this.isValid && this.checkHtml5Validity()
       },
     },
   },
   watch: {
     value(value) {
-      this.newValue = value
+      this.newValue = value;
     },
   },
   methods: {
@@ -141,19 +141,19 @@ export default {
       // log('onInput', event.target.value)
       this.$nextTick(() => {
         if (event.target) {
-          this.computedValue = event.target.value
+          this.computedValue = event.target.value;
         }
-      })
+      });
     },
     onInputBool(event) {
       // log('onInputBool', event.target.value)
       this.$nextTick(() => {
         if (event.target) {
-          this.computedValue = event.target.checked
-          event.target.focus()
+          this.computedValue = event.target.checked;
+          event.target.focus();
         }
-      })
+      });
     },
   },
-}
+};
 </script>

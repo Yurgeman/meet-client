@@ -1,9 +1,9 @@
-import { Logger, activateConsoleDebug } from "zeed"
+import { Logger, activateConsoleDebug } from "zeed";
 
 try {
-  activateConsoleDebug()
+  activateConsoleDebug();
 } catch (e) {
-  console.warn("activateConsoleDebug() did fail")
+  console.warn("activateConsoleDebug() did fail");
 }
 
-export { Logger }
+export { Logger };

@@ -44,12 +44,12 @@
 </style>
 
 <script>
-import { qrcode } from "../lib/qrcode"
-import { createLinkForRoom, shareLink } from "../lib/share"
-import SeaButton from "../ui/sea-button"
+import { qrcode } from "../lib/qrcode";
+import { createLinkForRoom, shareLink } from "../lib/share";
+import SeaButton from "../ui/sea-button";
 
-import { Logger } from "../lib/logger"
-const log = Logger("app:app-share")
+import { Logger } from "../lib/logger";
+const log = Logger("app:app-share");
 
 export default {
   name: "app-share",
@@ -58,29 +58,29 @@ export default {
     return {
       url: "",
       qrcode: "",
-    }
+    };
   },
   methods: {
     selectAll() {
       setTimeout(() => {
-        let el = this.$refs.input
-        el.select()
-      }, 0)
+        let el = this.$refs.input;
+        el.select();
+      }, 0);
     },
     doShare() {
-      shareLink(createLinkForRoom(this.state.room))
+      shareLink(createLinkForRoom(this.state.room));
     },
   },
   async mounted() {
-    this.url = createLinkForRoom(this.state.room)
-    const typeNumber = 0
-    const errorCorrectionLevel = "H"
-    const qr = qrcode(typeNumber, errorCorrectionLevel)
-    qr.addData(this.url)
-    qr.make()
+    this.url = createLinkForRoom(this.state.room);
+    const typeNumber = 0;
+    const errorCorrectionLevel = "H";
+    const qr = qrcode(typeNumber, errorCorrectionLevel);
+    qr.addData(this.url);
+    qr.make();
     this.qrcode = qr.createSvgTag({
       scalable: true,
-    })
+    });
   },
-}
+};
 </script>

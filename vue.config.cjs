@@ -1,14 +1,14 @@
 // Copyright (c) 2018. Dirk Holtwick <holtwick.de>
 
-let env = process.env
+let env = process.env;
 
-const isProduction = env.NODE_ENV === "production"
+const isProduction = env.NODE_ENV === "production";
 
-env.VUE_APP_NAME = env.npm_package_name
-env.VUE_APP_VERSION = env.npm_package_version
-env.VUE_APP_RELEASE = `${env.npm_package_name}@${env.npm_package_version}`
-env.VUE_APP_AUTHOR_NAME = env.npm_package_author_name
-env.VUE_APP_AUTHOR_EMAIL = env.npm_package_author_email
+env.VUE_APP_NAME = env.npm_package_name;
+env.VUE_APP_VERSION = env.npm_package_version;
+env.VUE_APP_RELEASE = `${env.npm_package_name}@${env.npm_package_version}`;
+env.VUE_APP_AUTHOR_NAME = env.npm_package_author_name;
+env.VUE_APP_AUTHOR_EMAIL = env.npm_package_author_email;
 
 let config = {
   publicPath: "/",
@@ -22,13 +22,13 @@ let config = {
     // https://stackoverflow.com/a/35426611/140927
     externals: [
       (function () {
-        const IGNORES = ["electron"]
+        const IGNORES = ["electron"];
         return function (context, request, callback) {
           if (IGNORES.indexOf(request) >= 0) {
-            return callback(null, "require('" + request + "')")
+            return callback(null, "require('" + request + "')");
           }
-          return callback()
-        }
+          return callback();
+        };
       })(),
     ],
   },
@@ -79,20 +79,20 @@ let config = {
       "Access-Control-Allow-Credentials": "true",
     },
   },
-}
+};
 
 if (
   !isProduction &&
   config.devServer.https &&
   (!process.env.SSL_KEY_PATH || !process.env.SSL_CERT_PATH)
 ) {
-  console.error("Please provide SSL_KEY_PATH and SSL_CERT_PATH.")
+  console.error("Please provide SSL_KEY_PATH and SSL_CERT_PATH.");
   console.error(
     "See https://blog.filippo.io/mkcert-valid-https-certificates-for-localhost/ for how to create SSL certificates for localhost"
-  )
-  process.exit(0)
+  );
+  process.exit(0);
 }
 
 // console.info('config = ' + JSON.stringify(config, null, 2))
 
-module.exports = config
+module.exports = config;

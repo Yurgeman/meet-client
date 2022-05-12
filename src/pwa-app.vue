@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import { Logger } from "./lib/logger"
-const log = Logger("app:pwa-app")
+import { Logger } from "./lib/logger";
+const log = Logger("app:pwa-app");
 
 export default {
   name: "App",
@@ -19,12 +19,12 @@ export default {
       import(/* webpackChunkName: 'embed' */ "./components/app-embed"),
   },
   data() {
-    return {}
+    return {};
   },
   mounted() {
-    log("pwa")
+    log("pwa");
   },
-}
+};
 </script>
 
 <style lang="scss">

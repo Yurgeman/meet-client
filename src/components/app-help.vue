@@ -85,9 +85,9 @@
 export default {
   name: "app-help",
   data() {
-    return {}
+    return {};
   },
   methods: {},
   async mounted() {},
-}
+};
 </script>

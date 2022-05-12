@@ -29,8 +29,8 @@
 // Mix of this receipt: https://www.cssscript.com/realistic-ios-switch-pure-css/
 // And IBM Carbon: https://www.carbondesignsystem.com/components/toggle/code
 
-import SeaFormGroup from "./sea-form-group"
-import SeaInputBase from "./sea-input-base"
+import SeaFormGroup from "./sea-form-group";
+import SeaInputBase from "./sea-input-base";
 
 export default {
   name: "sea-switch",
@@ -50,13 +50,13 @@ export default {
   },
   computed: {
     slotted() {
-      return this.label || this.$slots?.default?.[0] != null
+      return this.label || this.$slots?.default?.[0] != null;
     },
   },
   data() {
     return {
       uid: Math.random().toString(),
-    }
+    };
   },
-}
+};
 </script>

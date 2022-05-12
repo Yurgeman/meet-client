@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { uuid } from "zeed"
+import { uuid } from "zeed";
 
 export default {
   name: "sea-form-group",
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       uid: uuid(),
-    }
+    };
   },
-}
+};
 </script>

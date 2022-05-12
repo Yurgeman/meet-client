@@ -1,24 +1,24 @@
 // --- END GENERATED CODE, START CUSTOM CODE
 
-var ROOM_PATH = "/ng/"
+var ROOM_PATH = "/ng/";
 
-workbox.setConfig({ debug: true })
+workbox.setConfig({ debug: true });
 
 // Cache stuff
 
-console.info("SW started")
+console.info("SW started");
 
-workbox.core.setCacheNameDetails({ prefix: "briefing" })
-workbox.core.skipWaiting()
-workbox.core.clientsClaim()
+workbox.core.setCacheNameDetails({ prefix: "briefing" });
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
 
-self.__precacheManifest = [].concat(self.__precacheManifest || [])
-workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 const whitelistRoomPath = new RegExp(
   "^" + ROOM_PATH.replaceAll("/", "\\/") + ".*$",
   "gim"
-)
+);
 
 // console.log("whitelistRoomPath", whitelistRoomPath)
 
@@ -27,19 +27,19 @@ workbox.routing.registerNavigationRoute(
   {
     whitelist: [/^\/ng.*$/, whitelistRoomPath],
   }
-)
+);
 
 // Custom code
 
 self.addEventListener("notificationclick", (event) => {
-  console.log("notificationclick", event)
-  let room
+  console.log("notificationclick", event);
+  let room;
   try {
-    room = event.notification.data.room
+    room = event.notification.data.room;
   } catch (err) {
-    console.error("Exception", err)
+    console.error("Exception", err);
   }
-  console.log("Enter room", room)
+  console.log("Enter room", room);
   if (room) {
     event.waitUntil(
       self.clients.matchAll().then((clientList) => {
@@ -49,16 +49,16 @@ self.addEventListener("notificationclick", (event) => {
         //   })
         //   return clientList[0].focus()
         // }
-        return self.clients.openWindow(ROOM_PATH + room)
+        return self.clients.openWindow(ROOM_PATH + room);
       })
-    )
+    );
   }
-})
+});
 
 // Register event listener for the 'push' event.
 self.addEventListener("push", function (event) {
-  console.log("push", event)
-  let message = event.data.json()
+  console.log("push", event);
+  let message = event.data.json();
   event.waitUntil(
     self.registration.showNotification("Conf.DocsMe.ru", {
       body: message.count + ' users in room "' + message.room + '" now',
@@ -69,5 +69,5 @@ self.addEventListener("push", function (event) {
       // Sound taken from https://notificationsounds.com/message-tones/pristine-609
       sound: "/pristine.mp3",
     })
-  )
-})
+  );
+});

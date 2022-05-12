@@ -1,45 +1,45 @@
 // Copyright (c) 2020-2021 Dirk Holtwick. All rights reserved. https://holtwick.de/copyright
 
-import SimplePeer from "simple-peer"
-import { cloneObject } from "../lib/base"
-import { Emitter } from "../lib/emitter"
-import { trackException } from "../bugs"
+import SimplePeer from "simple-peer";
+import { cloneObject } from "../lib/base";
+import { Emitter } from "../lib/emitter";
+import { trackException } from "../bugs";
 import {
   getFingerprintString,
   sha256Messages,
   splitByNChars,
-} from "./fingerprint"
+} from "./fingerprint";
 
-import { Logger } from "../lib/logger"
-import { encodeBase32 } from "zeed"
-const log = Logger("app:webrtc-peer")
+import { Logger } from "../lib/logger";
+import { encodeBase32 } from "zeed";
+const log = Logger("app:webrtc-peer");
 
-let ctr = 1
+let ctr = 1;
 
 export class WebRTCPeer extends Emitter {
   static isSupported() {
-    return SimplePeer.WEBRTC_SUPPORT
+    return SimplePeer.WEBRTC_SUPPORT;
   }
 
   constructor({ remote, local, ...opt } = {}) {
-    super()
+    super();
 
-    this.remote = remote
-    this.local = local
-    this.initiator = opt.initiator
-    this.room = opt.room || ""
-    this.id = "webrtc-peer" + ctr++
-    this.fingerprint = ""
-    this.name = ""
+    this.remote = remote;
+    this.local = local;
+    this.initiator = opt.initiator;
+    this.room = opt.room || "";
+    this.id = "webrtc-peer" + ctr++;
+    this.fingerprint = "";
+    this.name = "";
 
-    log("peer", this.id)
-    this.setupPeer(opt)
+    log("peer", this.id);
+    this.setupPeer(opt);
   }
 
   setupPeer(opt) {
-    this.error = null
-    this.active = false
-    this.stream = null
+    this.error = null;
+    this.active = false;
+    this.stream = null;
 
     let opts = cloneObject({
       ...opt,
@@ -49,68 +49,69 @@ export class WebRTCPeer extends Emitter {
         offerToReceiveAudio: true,
         offerToReceiveVideo: true,
       },
-    })
+    });
 
-    log("SimplePeer opts:", opts)
+    log("SimplePeer opts:", opts);
 
     // https://github.com/feross/simple-peer/blob/master/README.md
-    this.peer = new SimplePeer(opts)
+    this.peer = new SimplePeer(opts);
 
-    this.peer.on("close", (_) => this.close())
+    this.peer.on("close", (_) => this.close());
 
     // We receive a connection error
     this.peer.on("error", (err) => {
-      log(`${this.id} | error`, err)
-      this.error = err
-      this.emit("error", err)
-      this.close()
+      log(`${this.id} | error`, err);
+      this.error = err;
+      this.emit("error", err);
+      this.close();
       setTimeout(() => {
-        this.setupPeer(opt) // ???
-      }, 1000)
-    })
+        this.setupPeer(opt); // ???
+      }, 1000);
+    });
 
     // This means, we received network details (signal) we need to provide
     // the remote peer, so he can set up a connection to us. Usually we will
     // send this over a separate channel like the web socket signaling server
     this.peer.on("signal", (data) => {
       // log(`${this.id} | signal`, this.initiator)
-      this.emit("signal", data)
-    })
+      this.emit("signal", data);
+    });
 
     this.peer.on("signalingStateChange", async (_) => {
       const fpl =
-        getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) || ""
+        getFingerprintString(this.peer?._pc?.currentLocalDescription?.sdp) ||
+        "";
       const fpr =
         getFingerprintString(this.peer?._pc?.currentRemoteDescription?.sdp) ||
-        ""
+        "";
       if (fpl && fpr) {
-        const digest = await sha256Messages(this.room, fpl, fpr)
-        this.fingerprint = splitByNChars(encodeBase32(digest), 4)
+        const digest = await sha256Messages(this.room, fpl, fpr);
+        this.fingerprint = splitByNChars(encodeBase32(digest), 4);
       } else {
-        this.fingerprint = ""
+        this.fingerprint = "";
       }
-    })
+    });
 
     // We received data from the peer
     this.peer.on("data", (data) => {
-      log(`${this.id} | data`, data)
-      this.emit("data", data)
-      this.emit("message", { data }) // Channel compat
-    })
+      log(`${this.id} | data`, data);
+      this.emit("data", data);
+      this.emit("message", { data }); // Channel compat
+    });
 
     // Connection succeeded
     this.peer.on("connect", (event) => {
-      log(`${this.id} | connect`, event)
-      this.active = true
+      log(`${this.id} | connect`, event);
+      this.active = true;
       // p.send('whatever' + Math.random())
-      this.emit("connect", event)
-    })
+      this.emit("connect", event);
+    });
 
     this.peer.on("stream", (stream) => {
-      log("new stream", stream)
-      this.stream = stream
-      this.emit("stream", stream)
-    })
+      log("new stream", stream);
+      this.stream = stream;
+      this.emit("stream", stream);
+    });
   }
 
   setStream(stream) {
@@ -118,19 +119,19 @@ export class WebRTCPeer extends Emitter {
       try {
         this.peer.streams.forEach((s) => {
           try {
-            this.peer.removeStream(s)
+            this.peer.removeStream(s);
           } catch (err) {
-            trackException(err)
+            trackException(err);
           }
-        })
+        });
       } catch (err) {
-        trackException(err)
+        trackException(err);
       }
       if (stream) {
         try {
-          this.peer.addStream(stream)
+          this.peer.addStream(stream);
         } catch (err) {
-          trackException(err)
+          trackException(err);
         }
       }
     }
@@ -143,20 +144,20 @@ export class WebRTCPeer extends Emitter {
       // if (data?.sdp) {
       //   data.sdp = data.sdp.replace(/(fingerprint:.*?):(\w\w):/, '$1:00:')
       // }
-      this.peer.signal(data)
+      this.peer.signal(data);
     } else {
-      log("Tried to set signal on destroyed peer", this.peer, data)
+      log("Tried to set signal on destroyed peer", this.peer, data);
     }
   }
 
   postMessage(data) {
     // Channel compat
-    this.peer.send(data)
+    this.peer.send(data);
   }
 
   close() {
-    this.emit("close")
-    this.active = false
-    this.peer?.destroy()
+    this.emit("close");
+    this.active = false;
+    this.peer?.destroy();
   }
 }

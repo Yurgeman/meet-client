@@ -2,19 +2,16 @@
   <div class="-scroll">
     <div class="page1">
       <div class="logo">
-        <form id="form"
-              @submit.prevent="doEnterRoom">
-          <a @click.prevent="doEnterRoom"
-             :href="url"
-             id="link"
-             class="link">conf.docsme
+        <form id="form" @submit.prevent="doEnterRoom">
+          <a @click.prevent="doEnterRoom" :href="url" id="link" class="link"
+            >conf.docsme
             <span class="dot">.</span>
             ru
             <span class="slash">/</span>
             ng
             <span class="slash">/</span>
           </a>
-          <wbr/>
+          <wbr />
           <input
             type="text"
             id="room"
@@ -23,19 +20,21 @@
             enterkeyhint="go"
             spellcheck="false"
             v-model="room"
-            :placeholder="defaultName"/>
+            :placeholder="defaultName"
+          />
         </form>
         <div class="button-container">
-          <a @click.prevent="doEnterRoom"
-             :href="url"
-             class="button start-button"
-             id="button">{{ l.welcome.start }}</a>
+          <a
+            @click.prevent="doEnterRoom"
+            :href="url"
+            class="button start-button"
+            id="button"
+            >{{ l.welcome.start }}</a
+          >
         </div>
       </div>
-      <div class="footer links">
-      </div>
+      <div class="footer links"></div>
     </div>
-    
   </div>
 </template>
 
@@ -192,92 +191,94 @@
 </style>
 
 <script>
-import { DEBUG, ROOM_PATH }     from '../config'
-import AppHelp                  from './app-help'
-import { trackSilentException } from '../bugs'
-import { generateName }         from '../lib/names'
+import { DEBUG, ROOM_PATH } from "../config";
+import AppHelp from "./app-help";
+import { trackSilentException } from "../bugs";
+import { generateName } from "../lib/names";
 
 export default {
-  name:       'app-welcome',
+  name: "app-welcome",
   components: {
-    AppHelp
+    AppHelp,
   },
-  data () {
+  data() {
     let defaultName = DEBUG
-      ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || 'development'
-      : generateName()
+      ? process.env.VUE_APP_DEBUG_DEFAULT_ROOM || "development"
+      : generateName();
     return {
       defaultName,
-      room:         defaultName,
-      url:          '',
+      room: defaultName,
+      url: "",
       initialWidth: -1,
-      currentChar:  0,
-      observer:     null
-    }
+      currentChar: 0,
+      observer: null,
+    };
   },
   methods: {
-    doEnterRoom () {
-      const room      = this.room || this.defaultName || ''
-      this.state.room = room
+    doEnterRoom() {
+      const room = this.room || this.defaultName || "";
+      this.state.room = room;
       try {
         window.history.pushState(
           null, // { room },
           null, // room,
           ROOM_PATH + room
-        )
-      }
-      catch (err) {
-        trackSilentException(err)
+        );
+      } catch (err) {
+        trackSilentException(err);
       }
     },
-    updateInput () {
-      const input = this.$refs.input
-      if (this.initialWidth < 0) this.initialWidth = input.scrollWidth
-      let value         = input.value.trim()
-      input.style.width = '1px'
-      input.style.width = ( value ? input.scrollWidth : this.initialWidth ) + 'px'
-      this.url          = ROOM_PATH + ( value || this.defaultName )
+    updateInput() {
+      const input = this.$refs.input;
+      if (this.initialWidth < 0) this.initialWidth = input.scrollWidth;
+      let value = input.value.trim();
+      input.style.width = "1px";
+      input.style.width =
+        (value ? input.scrollWidth : this.initialWidth) + "px";
+      this.url = ROOM_PATH + (value || this.defaultName);
     },
-    charAnimation () {
+    charAnimation() {
       setTimeout(() => {
-        let input = this.$refs.input
+        let input = this.$refs.input;
         if (input) {
-          this.currentChar++
-          this.$refs.input.value = this.defaultName.substr(0, this.currentChar)
-          this.updateInput()
+          this.currentChar++;
+          this.$refs.input.value = this.defaultName.substr(0, this.currentChar);
+          this.updateInput();
           if (this.currentChar < this.defaultName.length) {
-            this.charAnimation()
+            this.charAnimation();
           }
         }
-      }, 100)
-    }
+      }, 100);
+    },
   },
-  watch:   {
-    room () {
-      this.updateInput()
-    }
+  watch: {
+    room() {
+      this.updateInput();
+    },
   },
-  async mounted () {
-    await this.$nextTick()
+  async mounted() {
+    await this.$nextTick();
 
-    const input = this.$refs.input
+    const input = this.$refs.input;
     if (input) {
-      input.style.width = input.scrollWidth + 'px'
-      this.updateInput()
+      input.style.width = input.scrollWidth + "px";
+      this.updateInput();
 
-      this.observer = new ResizeObserver(this.updateInput)
-      this.observer.observe(document.body)
+      this.observer = new ResizeObserver(this.updateInput);
+      this.observer.observe(document.body);
 
-      this.charAnimation()
+      this.charAnimation();
 
-      if (!/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)) {
-        input.focus()
+      if (
+        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test(navigator.userAgent)
+      ) {
+        input.focus();
       }
     }
   },
 
-  beforeDestroy () {
-    this.observer?.disconnect()
-  }
-}
+  beforeDestroy() {
+    this.observer?.disconnect();
+  },
+};
 </script>

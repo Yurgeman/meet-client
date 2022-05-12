@@ -39,7 +39,7 @@
 export function isPWAInstalled() {
   return (
     navigator.standalone || matchMedia("(display-mode: standalone)").matches
-  )
+  );
 }
 
 // window.addEventListener('load', () => {

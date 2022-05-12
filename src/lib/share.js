@@ -1,13 +1,13 @@
-import clipboardCopy from "clipboard-copy"
-import { trackException } from "../bugs"
-import { ROOM_URL } from "../config.js"
+import clipboardCopy from "clipboard-copy";
+import { trackException } from "../bugs";
+import { ROOM_URL } from "../config.js";
 
 export function createLinkForRoom(room) {
-  return ROOM_URL + room
+  return ROOM_URL + room;
 }
 
-export const canShare = navigator.share != null
-export const canCopy = !canShare
+export const canShare = navigator.share != null;
+export const canCopy = !canShare;
 
 export async function shareLink(
   url,
@@ -22,29 +22,29 @@ export async function shareLink(
         title,
         text,
         url,
-      })
-      return true
+      });
+      return true;
     } catch (err) {
-      console.warn(err)
+      console.warn(err);
       // trackException(err)
     }
   } else if (window.electron) {
     try {
       // https://electronjs.org/docs/api/clipboard
-      await window.electron.clipboard.writeText(url)
+      await window.electron.clipboard.writeText(url);
       // alert('The URL has been copied to your clipboard.')
-      return true
+      return true;
     } catch (err) {
-      console.warn(err)
+      console.warn(err);
       // trackException(err)
     }
   } else {
     try {
-      await clipboardCopy(url)
+      await clipboardCopy(url);
       // alert('The URL has been copied to your clipboard.')
-      return true
+      return true;
     } catch (err) {
-      alert(`Cannot copy ${url}. Please do by hand.`)
+      alert(`Cannot copy ${url}. Please do by hand.`);
       // trackException(err)
     }
   }

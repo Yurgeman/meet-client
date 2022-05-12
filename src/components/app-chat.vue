@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { messages } from "@/lib/emitter"
+import { messages } from "@/lib/emitter";
 
 export default {
   name: "app-chat",
@@ -58,45 +58,45 @@ export default {
     return {
       messages: [],
       nameString: this.name,
-    }
+    };
   },
   methods: {
     sendMessage(event) {
-      let message = event.target.value
-      let name = this.nameString
-      let current = new Date()
-      let ampm = current.getUTCHours() < 12 ? "AM" : "PM"
+      let message = event.target.value;
+      let name = this.nameString;
+      let current = new Date();
+      let ampm = current.getUTCHours() < 12 ? "AM" : "PM";
       let time =
         (current.getUTCHours() % 12) +
         ":" +
         current.getUTCMinutes() +
         " " +
         ampm +
-        " (UTC)"
-      messages.emit("chatMessage", { name, message, time })
+        " (UTC)";
+      messages.emit("chatMessage", { name, message, time });
       this.messages.push({
         name: name,
         message: message,
         from_me: true,
         time: time,
-      })
-      event.target.value = ""
+      });
+      event.target.value = "";
     },
     setName() {
-      let name = document.getElementById("name").value
-      localStorage.setItem("name", name)
-      this.nameString = name
+      let name = document.getElementById("name").value;
+      localStorage.setItem("name", name);
+      this.nameString = name;
       messages.emit("userInfo", {
         name: name,
-      })
+      });
     },
     scrollToEnd: function () {
-      let messages = this.$el.querySelector(".messages-container")
-      messages.scrollTop = messages.lastElementChild.offsetTop
+      let messages = this.$el.querySelector(".messages-container");
+      messages.scrollTop = messages.lastElementChild.offsetTop;
     },
   },
   updated() {
-    this.$nextTick(() => this.scrollToEnd())
+    this.$nextTick(() => this.scrollToEnd());
   },
   mounted() {
     messages.on("newMessage", (info) => {
@@ -105,10 +105,10 @@ export default {
         message: info.message,
         from_me: false,
         time: info.time,
-      })
-    })
+      });
+    });
   },
-}
+};
 </script>
 
 <style lang="scss">
