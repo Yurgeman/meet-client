@@ -22,6 +22,7 @@ $modalSepColor: var(--separator-color, $gray-color-light);
   &.active {
     display: flex;
     opacity: 1;
+    align-items: flex-end;
     z-index: $z-index-overlay;
 
     .sea-modal-overlay {
@@ -109,7 +110,7 @@ $modalSepColor: var(--separator-color, $gray-color-light);
     min-width: inherit;
     max-width: inherit;
     width: 100%;
-    height: 100%;
+    //height: 100%;
     margin: 1rem;
   }
 }
@@ -129,7 +130,7 @@ $modalSepColor: var(--separator-color, $gray-color-light);
       min-width: inherit;
       max-width: 100%;
       width: 100%;
-      height: 100%;
+      //height: 100%;
       margin: 0;
       box-shadow: none;
       background: $bg-color-light;

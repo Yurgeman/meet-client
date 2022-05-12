@@ -32,9 +32,7 @@
     </div>
     <div class="form-group settings-group">
       <sea-switch v-model="state.fill">{{ l.settings.fill }}</sea-switch>
-      <div class="settings-info">
-        {{ l.settings.fill_info }}
-      </div>
+      <!--<div class="settings-info">{{ l.settings.fill_info }} </div>-->
     </div>
     <div class="form-group settings-group"
          v-if="false">
@@ -61,7 +59,8 @@
     <div class="form-group settings-group"
          v-if="false">
       <sea-switch v-model="sentry">{{ l.settings.persist_settings }}</sea-switch>
-      <!--      <div class="settings-info" v-html="l.settings.sentry_info"></div>-->
+      <div class="settings-info"
+           v-html="l.settings.sentry_info"></div>
     </div>
     <div class="form-group settings-group"
          v-if="!iOS">
