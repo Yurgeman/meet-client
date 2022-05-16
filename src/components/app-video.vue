@@ -7,6 +7,7 @@
       :style="`background:url(/faces/${screenshotNumber}.jpg); background-size: cover; background-position: center;`"
       class="video"
       :class="{ '-mirrored': mirrored }"/>
+
     <video
       class="video"
       :class="{ '-mirrored': mirrored }"
@@ -33,10 +34,9 @@
       </svg>
       <label>Ожидание подключения</label>
     </div>
-    <div
-      v-if="fingerprint"
-      class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
-      v-show="!state.maximized">
+    <div v-if="fingerprint"
+         class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
+         v-show="!state.maximized">
       <!--<label title="Verification code"-->
       <!--       class="-short"-->
       <!--       @click.stop.prevent="doToggleShow"-->
@@ -68,9 +68,8 @@
       <!--  {{ name }}-->
       <!--</label>-->
     </div>
-    <div
-      v-if="state.muteVideo && id === 'self'"
-      class="video video-placeholder -content-placeholder">
+    <div v-if="state.muteVideo && id === 'self'"
+         class="video video-placeholder -content-placeholder">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -90,9 +89,8 @@
       </svg>
       <label>You turned the video off</label>
     </div>
-    <div
-      v-if="stream && showPlayButton"
-      class="video video-placeholder -content-placeholder -overlay">
+    <div v-if="stream && showPlayButton"
+         class="video video-placeholder -content-placeholder -overlay">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -117,7 +115,7 @@
 
 <script>
 import { trackSilentException } from '../bugs'
-import enableInlineVideo        from 'iphone-inline-video'
+//import enableInlineVideo        from 'iphone-inline-video'
 import { Logger }               from '../lib/logger'
 
 const log = Logger( 'app:app-peer' )
@@ -193,7 +191,6 @@ export default {
       if ( stream ) {
         try {
           await this.$nextTick()
-
           let video = this.$refs.video
           log( 'connectStreamToVideoElement', stream, video )
           if ( stream ) {
