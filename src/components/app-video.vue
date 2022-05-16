@@ -167,8 +167,9 @@ export default {
   },
 
   methods: {
-    playVideo ( video ) {
-      let startPlayPromise = video.play()
+    async playVideo ( video ) {
+      let startPlayPromise = await video.play()
+      console.log( '---- video', video )
       log( 'play', startPlayPromise )
       if ( startPlayPromise !== undefined ) {
         startPlayPromise
@@ -236,7 +237,7 @@ export default {
     async doPlay () {
       try {
         log( 'force play manually' )
-        this.$refs?.video?.play()
+        await this.$refs.video.play()
         this.showPlayButton = false
       }
       catch ( err ) {
