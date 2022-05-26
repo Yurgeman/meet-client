@@ -111,9 +111,7 @@
       <label>Click to start video</label>
     </div>
 
-    <button class="pd-video-conf pd-video-conf--close"
-            @click="callOff"
-            v-html="icons.callOff"></button>
+
 
   </div>
 </template>
@@ -166,6 +164,7 @@ export default {
       screenshotNumber: ++window.screenshotNumber,
       showCode:         false,
       showPlayButton:   false,
+      disabled:         false,
       icons:            {
         callOff:  `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -194,9 +193,7 @@ export default {
 
   methods: {
 
-    async callOff () {
-      await window.close()
-    },
+
 
     async playVideo ( video ) {
       let startPlayPromise = await video.play()
@@ -293,34 +290,3 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-@import "../css/variables"
-$buttonSize: 3rem
-
-.pd-video-conf
-  position: absolute
-  bottom: 0
-  left: 50%
-  margin: 1rem
-  transform: translateX(-50%)
-  cursor: pointer
-
-  &--close
-    background-color: rgba(215, 62, 72, 0.8)
-    border-radius: 500px
-    padding: 0
-    display: flex
-    align-items: center
-    justify-content: center
-    color: rgba(255, 255, 255, 1)
-    width: $buttonSize + 1rem
-    height: $buttonSize + 1rem
-    z-index: 30
-
-    &:hover
-      background-color: rgba(215, 62, 72, 1)
-
-    & > *
-      width: $buttonSize * .7
-      height: $buttonSize * .7
-</style>
