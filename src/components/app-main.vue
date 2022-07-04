@@ -436,34 +436,31 @@ export default {
   methods:  {
 
     goApp() {
-      console.log( 'detectDevice', this.detectDevice )
-      if ( this.detectDevice === 'Android' ) {
-        // https://meddoc-app-dev.cara.bi/intent://meddoc-app-dev.cara.bi/#Intent;scheme=https;package=ru.meddoc.meddoc.android;end
-        // const url = ''
-        window.location.replace( 'meddoc://' )
-      } else if ( this.detectDevice === 'iOS' ) {
-        window.location.replace( 'meddoc://' )
+      console.log( 'detectDevice', this.detectDevice, window.location.origin )
 
-        setTimeout( () => {
-          window.location.replace(
-              'https://apps.apple.com/ru/app/meddoc/id1542321546'
-          )
-        }, 3000 )
-      } else {
-        window.location.replace( 'https://meddoc-app.cara.bi' )
+      if ( confirm( 'Завершить?' ) ) {
+        this.disabled = true
+
+        if ( this.detectDevice === 'Android' ) {
+          // https://meddoc-app-dev.cara.bi/intent://meddoc-app-dev.cara.bi/#Intent;scheme=https;package=ru.meddoc.meddoc.android;end
+          // const url = ''
+          window.location.replace( 'meddoc://' )
+        } else if ( this.detectDevice === 'iOS' ) {
+          window.location.replace( 'meddoc://' )
+          setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
+        } else {
+          // const url = window.open( 'https://meddoc-app.cara.bi', '_self', '' )
+          const url = window.open( window.location.origin + '/ng', '_self', '' )
+          url.document.write( '' )
+          setTimeout( () => url.close(), 1000 )
+        }
+
       }
-
-      //if ( confirm( 'Завершить?' ) ) {
-      //  this.disabled  = true
-      //  const myWindow = window.open( window.location.origin, '_self', '' )
-      //  myWindow.document.write( '' )
-      //  setTimeout( () => myWindow.close(), 1000 )
-      //}
     },
 
     callOff() {
       // https://apps.apple.com/ru/app/meddoc/id1542321546
-      window.location.replace( 'pridoc://' )
+      // window.location.replace( 'pridoc://' )
       //window.open( 'meddoc://', '_self', '' )
       //window.open( 'https://apps.apple.com/ru/app/meddoc/id1542321546', '_self', '' )
       this.disabled = true
