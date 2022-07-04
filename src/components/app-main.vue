@@ -449,10 +449,11 @@ export default {
           window.location.replace( 'meddoc://' )
           setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
         } else {
-          // const url = window.open( 'https://meddoc-app.cara.bi', '_self', '' )
-          const url = window.open( window.location.origin + '/ng', '_self', '' )
-          url.document.write( '' )
-          setTimeout( () => url.close(), 1000 )
+          // window.open('','_self').close()
+          const url = window.open( 'https://med-doc.me/', '_self', '' )
+          // // const url = window.open( window.location.origin, '_self', '' )
+          // // url.document.write( '' )
+          // setTimeout( () => url.close(), 1000 )
         }
 
       }
