@@ -439,7 +439,7 @@ export default {
       console.log( 'detectDevice', this.detectDevice, window.location.origin )
 
       if ( confirm( 'Завершить?' ) ) {
-        this.disabled = true
+        // this.disabled = true
 
         if ( this.detectDevice === 'Android' ) {
           // https://meddoc-app-dev.cara.bi/intent://meddoc-app-dev.cara.bi/#Intent;scheme=https;package=ru.meddoc.meddoc.android;end
