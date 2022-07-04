@@ -447,7 +447,8 @@ export default {
           window.location.replace( 'meddoc://' )
         } else if ( this.detectDevice === 'iOS' ) {
           window.location.replace( 'meddoc://' )
-          setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
+          setTimeout( () => window.location.replace( 'https://med-doc.me/' ), 3000 )
+          // setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
         } else {
           // window.open('','_self').close()
           const url = window.open( 'https://med-doc.me/', '_self', '' )
