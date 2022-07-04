@@ -1,48 +1,42 @@
 <template>
   <div
-    class="app hstack"
-    @dragover="onDragOver"
-    @dragend="onDragEnd"
-    @dragexit="onDragEnd"
-    @dragleave="onDragEnd"
-    @drop="onDrop"
-  >
+      class="app hstack"
+      @dragover="onDragOver"
+      @dragend="onDragEnd"
+      @dragexit="onDragEnd"
+      @dragleave="onDragEnd"
+      @drop="onDrop">
+
     <sea-modal
-      xclass="panel -left panel-settings"
-      :active="mode === 'settings'"
-      :title="l.settings.title"
-      @close="mode = ''"
-    >
+        xclass="panel -left panel-settings"
+        :active="mode === 'settings'"
+        :title="l.settings.title"
+        @close="mode = ''">
       <app-settings></app-settings>
     </sea-modal>
 
     <div
-      class="-fit vstack"
-      :data-mode="state.maximized ? 'maximized' : 'default'"
-    >
+        class="-fit vstack"
+        :data-mode="state.maximized ? 'maximized' : 'default'">
       <div class="-fit stack videos -relative">
         <app-video
-          v-if="videoAllowed && state.stream"
-          :stream="state.stream"
-          muted
-          :mirrored="state.deviceVideo !== 'desktop'"
-          title="Local"
-          id="self"
-        />
+            v-if="videoAllowed && state.stream"
+            :stream="state.stream"
+            muted
+            :mirrored="state.deviceVideo !== 'desktop'"
+            title="Local"
+            id="self"/>
 
         <app-video
-          v-for="peer in peers"
-          :key="peer.remote"
-          :id="peer.remote"
-          :stream="peer && peer.peer && peer.peer.stream"
-          :fingerprint="peer && peer.peer && peer.peer.fingerprint"
-          :name="peer && peer.peer && peer.peer.name"
-        />
+            v-for="peer in peers"
+            :key="peer.remote"
+            :id="peer.remote"
+            :stream="peer && peer.peer && peer.peer.stream"
+            :fingerprint="peer && peer.peer && peer.peer.fingerprint"
+            :name="peer && peer.peer && peer.peer.name"/>
 
-        <div
-          class="message-container -error"
-          v-if="!state.screenshots && state.requestBugTracking"
-        >
+        <div class="message-container -error"
+             v-if="!state.screenshots && state.requestBugTracking">
           <div class="message">
             Произошла ошибка.
             <!--<u @click="doAllow(true)">Allow</u> |-->
@@ -66,41 +60,32 @@
           </div>
         </div>
 
-        <div
-          class="message-container"
-          v-else-if="
+        <div class="message-container"
+             v-else-if="
             !hasPeers &&
             !state.screenshots &&
             mode !== 'share' &&
-            state.showInviteHint
-          "
-        >
-          <div
-            class="message"
-            v-html="l.share.message.replace('$symbol$', symbol)"
-          ></div>
+            state.showInviteHint">
+          <div class="message"
+               v-html="l.share.message.replace('$symbol$', symbol)"></div>
         </div>
       </div>
 
       <div class="tools vstack"
            style="padding: 0.5rem">
-        <sea-link
-          v-if="state.showSettings"
-          @action="doTogglePanel('settings')"
-          class="tool"
-          :class="{ '-active': mode === 'settings' }"
-        >
+        <sea-link v-if="state.showSettings"
+                  @action="doTogglePanel('settings')"
+                  class="tool"
+                  :class="{ '-active': mode === 'settings' }">
           <!--        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>-->
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg"
+               width="24"
+               height="24"
+               viewBox="0 0 24 24"
+               fill="none"
+               stroke="currentColor"
+               stroke-linecap="round"
+               stroke-linejoin="round">
             <line x1="4"
                   y1="21"
                   x2="4"
@@ -142,40 +127,36 @@
         <div class="-fit"
              style="flex-direction: column">
           <sea-link
-            class="tool"
-            :class="{ '-off': state.muteVideo }"
-            @action="doVideo"
-          >
+              class="tool"
+              :class="{ '-off': state.muteVideo }"
+              @action="doVideo">
             <svg
-              v-if="state.muteVideo"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+                v-if="state.muteVideo"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round">
               <path
-                d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"
-              ></path>
+                  d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34l1 1L23 7v10"></path>
               <line x1="1"
                     y1="1"
                     x2="23"
                     y2="23"></line>
             </svg>
             <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round">
               <polygon points="23 7 16 12 23 17 23 7"></polygon>
               <rect x="1"
                     y="5"
@@ -208,30 +189,26 @@
 
           <!--</sea-link>-->
           <sea-link
-            class="tool"
-            :class="{ '-off': state.muteAudio }"
-            @action="doAudio"
-          >
+              class="tool"
+              :class="{ '-off': state.muteAudio }"
+              @action="doAudio">
             <svg
-              v-if="state.muteAudio"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
+                v-if="state.muteAudio"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round">
               <line x1="1"
                     y1="1"
                     x2="23"
                     y2="23"></line>
+              <path d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"></path>
               <path
-                d="M9 9v3a3 3 0 0 0 5.12 2.12M15 9.34V4a3 3 0 0 0-5.94-.6"
-              ></path>
-              <path
-                d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"
+                  d="M17 16.95A7 7 0 0 1 5 12v-2m14 0v2a7 7 0 0 1-.11 1.23"
               ></path>
               <line x1="12"
                     y1="19"
@@ -243,19 +220,16 @@
                     y2="23"></line>
             </svg>
             <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-              ></path>
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
               <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
               <line x1="12"
                     y1="19"
@@ -269,85 +243,74 @@
           </sea-link>
         </div>
         <sea-link
-          v-if="state.showFullscreen && supportsFullscreen"
-          @action="doToggleFullScreen"
-          class="tool"
-        >
+            v-if="state.showFullscreen && supportsFullscreen"
+            @action="doToggleFullScreen"
+            class="tool">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            v-if="!isFullScreen"
-          >
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              v-if="!isFullScreen">
             <path
-              d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
-            ></path>
+                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
           </svg>
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            v-if="isFullScreen"
-          >
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              v-if="isFullScreen">
             <path
-              d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"
-            ></path>
+                d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
           </svg>
         </sea-link>
 
         <sea-link
-          v-if="state.showChat"
-          @action="toggleChat()"
-          class="tool messageBtn"
-          :class="{ '-active': mode === 'chat' }"
-        >
+            v-if="state.showChat"
+            @action="toggleChat()"
+            class="tool messageBtn"
+            :class="{ '-active': mode === 'chat' }">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="feather feather-message-square"
-          >
-            <path
-              d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-            ></path>
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-message-square">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
           </svg>
           <div v-if="unreadMessages"
                class="unread-msg"></div>
         </sea-link>
 
         <sea-link
-          v-if="state.showShare"
-          @action="doTogglePanel('share')"
-          class="tool"
-          :class="{ '-active': mode === 'share' }"
-        >
+            v-if="state.showShare"
+            @action="doTogglePanel('share')"
+            class="tool"
+            :class="{ '-active': mode === 'share' }">
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round">
             <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
             <polyline points="16 6 12 2 8 6"></polyline>
             <line x1="12"
@@ -360,25 +323,23 @@
     </div>
 
     <sea-modal
-      xclass="panel -left panel-share"
-      :active="mode === 'share'"
-      :title="l.share.title"
-      @close="mode = ''"
+        xclass="panel -left panel-share"
+        :active="mode === 'share'"
+        :title="l.share.title"
+        @close="mode = ''"
     >
       <app-share></app-share>
     </sea-modal>
 
-    <sea-modal
-      xclass="panel -left panel-share"
-      :active="mode === 'chat'"
-      title="Chat with others"
-      @close="mode = ''"
-      :scrollable="false"
-    >
+    <sea-modal xclass="panel -left panel-share"
+               :active="mode === 'chat'"
+               title="Chat with others"
+               @close="mode = ''"
+               :scrollable="false">
       <app-chat :name="this.name"></app-chat>
     </sea-modal>
     <button class="pd-video-conf pd-video-conf--close"
-            @click="callOff"
+            @click="goApp"
             :disabled="disabled"
             v-html="icons.callOff"></button>
   </div>
@@ -410,7 +371,7 @@ export default {
     SeaButton,
     AppVideo
   },
-  data () {
+  data() {
     return {
       mode:               '',
       disabled:           false,
@@ -418,14 +379,15 @@ export default {
       share:              false,
       conn:               null,
       dragOver:           false,
-      supportsFullscreen: document.fullscreenEnabled,
-      isFullScreen:       false,
-      fullscreenHandler:  null,
+      supportsFullscreen: false,
+      //supportsFullscreen: document.fullscreenEnabled,
+      isFullScreen:      false,
+      fullscreenHandler: null,
       symbol:
-                          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
-      name:               '',
-      unreadMessages:     false,
-      icons:              {
+                         '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>',
+      name:              '',
+      unreadMessages:    false,
+      icons:             {
         callOff:  `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <line x1="3" y1="21" x2="21" y2="3" />
@@ -451,79 +413,116 @@ export default {
     }
   },
   computed: {
-    hasPeers () {
+    hasPeers() {
       return Object.keys( this.state.status ).length > 0
     },
-    peers () {
+    peers() {
       return this.state.screenshots ? [ 2, 3 ] : this.state.status
     },
-    videoAllowed () {
+    videoAllowed() {
       if ( window.webkit != null ) {
         return this.mode === ''
       }
       return true
+    },
+    detectDevice() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera
+      if ( /android/i.test( userAgent ) ) return 'Android'
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+      if ( /iPad|iPhone|iPod/.test( userAgent ) && !window.MSStream ) return 'iOS'
+      return 'unknown'
     }
   },
   methods:  {
-    callOff () {
-      this.disabled = true
-      if ( confirm( 'Завершить?' ) ) {
-        const myWindow = window.open( window.location.origin, '_self', '' )
-        myWindow.document.write( '' )
-        setTimeout( () => myWindow.close(), 1000 )
+
+    goApp() {
+      console.log( 'detectDevice', this.detectDevice )
+      if ( this.detectDevice === 'Android' ) {
+        // https://meddoc-app-dev.cara.bi/intent://meddoc-app-dev.cara.bi/#Intent;scheme=https;package=ru.meddoc.meddoc.android;end
+        // const url = ''
+        window.location.replace( 'meddoc://' )
+      } else if ( this.detectDevice === 'iOS' ) {
+        window.location.replace( 'meddoc://' )
+
+        setTimeout( () => {
+          window.location.replace(
+              'https://apps.apple.com/ru/app/meddoc/id1542321546'
+          )
+        }, 3000 )
+      } else {
+        window.location.replace( 'https://meddoc-app.cara.bi' )
       }
+
+      //if ( confirm( 'Завершить?' ) ) {
+      //  this.disabled  = true
+      //  const myWindow = window.open( window.location.origin, '_self', '' )
+      //  myWindow.document.write( '' )
+      //  setTimeout( () => myWindow.close(), 1000 )
+      //}
     },
-    doShare () {
+
+    callOff() {
+      // https://apps.apple.com/ru/app/meddoc/id1542321546
+      window.location.replace( 'pridoc://' )
+      //window.open( 'meddoc://', '_self', '' )
+      //window.open( 'https://apps.apple.com/ru/app/meddoc/id1542321546', '_self', '' )
+      this.disabled = true
+      //if ( confirm( 'Завершить?' ) ) {
+      //  const myWindow = window.open( window.location.origin, '_self', '' )
+      //  myWindow.document.write( '' )
+      //  setTimeout( () => myWindow.close(), 1000 )
+      //}
+    },
+    doShare() {
       shareLink( createLinkForRoom( this.state.room ) )
     },
-    doVideo () {
+    doVideo() {
       this.state.muteVideo = !this.state.muteVideo
       messages.emit( 'updateStream' )
     },
-    doAudio () {
+    doAudio() {
       this.state.muteAudio = !this.state.muteAudio
       messages.emit( 'updateStream' )
     },
     // TODO: reformat quit
-    doQuit () {
+    doQuit() {
       if ( confirm( 'Really quit this session?' ) ) {
         //location.assign("/ng/")
         window.parent.postMessage( { type: 'close', id: this.state.room }, '*' )
         //window.parent.postMessage('close', '*');
       }
     },
-    doReload () {
+    doReload() {
       location.reload()
     },
-    doAllow ( allow ) {
+    doAllow( allow ) {
       if ( allow ) {
         setAllowedBugTracking( allow )
       }
       this.state.requestBugTracking = false
     },
-    doToggleFullScreen () {
+    doToggleFullScreen() {
       if ( !document.fullscreenElement ) {
         document.documentElement.requestFullscreen()
-      }
-      else {
+      } else {
         if ( document.exitFullscreen ) {
           document.exitFullscreen()
         }
       }
     },
-    doTogglePanel ( mode = 'settings' ) {
+    doTogglePanel( mode = 'settings' ) {
       this.mode = !mode || this.mode === mode ? '' : mode
     },
-    onDragOver ( ev ) {
+    onDragOver( ev ) {
       ev.preventDefault()
       ev.dataTransfer.dropEffect = 'copy'
-      this.dragOver              = true
+      this.dragOver = true
     },
-    onDragEnd ( ev ) {
+    onDragEnd( ev ) {
       this.dragOver = false
       ev.preventDefault()
     },
-    onDrop ( ev ) {
+    onDrop( ev ) {
       this.dragOver = false
       ev.preventDefault()
       let dataProvider = ev.dataTransfer || ev.clipboardData
@@ -533,8 +532,8 @@ export default {
           let url = URL.createObjectURL( files[ 0 ] )
           setBackgroundImage( url )
           this.state.backgroundImageURL = url
-          this.state.backgroundAuthor   = ''
-          this.state.backgroundURL      = ''
+          this.state.backgroundAuthor = ''
+          this.state.backgroundURL = ''
 
           // If just the background mode changes, don't restart the whole thing
           // if ((value && !prevValue) || (prevValue && !value)) {
@@ -546,75 +545,53 @@ export default {
         }
       }
     },
-    didChangeFullscreen ( ev ) {},
-    toggleChat () {
-      if ( this.mode === 'chat' ) {
-        this.mode = ''
-      }
-      else {
+    didChangeFullscreen( ev ) {},
+    toggleChat() {
+      if ( this.mode === 'chat' ) {this.mode = ''} else {
         this.unreadMessages = false
-        this.mode           = 'chat'
+        this.mode = 'chat'
         this.focusChatInput()
       }
     },
-    updateUserInfo () {
-      messages.emit( 'userInfo', {
-        name: this.name
-      } )
+    updateUserInfo() {
+      messages.emit( 'userInfo', { name: this.name } )
     },
-    triggerChatFunctions () {
+    triggerChatFunctions() {
       messages.on( 'newMessage', () => {
-        if ( this.mode !== 'chat' ) {
-          this.unreadMessages = true
-        }
+        if ( this.mode !== 'chat' ) {this.unreadMessages = true}
       } )
 
       messages.on( 'userInfoUpdate', ( { peer, data } ) => {
-        this.peers[
-          this.peers.findIndex( ( el ) => el.remote === peer.local )
-          ].peer.name = data.data.name
+        this.peers[ this.peers.findIndex( ( el ) => el.remote === peer.local ) ]
+            .peer.name = data.data.name
       } )
 
       // Update Local Name to Remote peers every 10 seconds for new peers
-      messages.on( 'requestUserInfo', () => {
-        this.updateUserInfo()
-      } )
+      messages.on( 'requestUserInfo', () => {this.updateUserInfo()} )
     },
-    setName () {
+    setName() {
       let name = localStorage.getItem( 'name' )
       if ( name ) {
         this.name = name
-        messages.emit( 'userInfo', {
-          name: name
-        } )
+        messages.emit( 'userInfo', { name: name } )
       }
     },
-    focusChatInput () {
-      if (
-        !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test( navigator.userAgent )
-      ) {
-        setTimeout( () => {
-          document.getElementById( 'message-input' )?.focus()
-        }, 100 )
+    focusChatInput() {
+      if ( !/Android|webOS|iPhone|iPad|iPod|Opera Mini/i.test( navigator.userAgent ) ) {
+        setTimeout( () => document.getElementById( 'message-input' )?.focus(), 100 )
       }
     }
   },
-  mounted () {
+  mounted() {
     this.setName()
     this.triggerChatFunctions()
-
-    setTimeout( async () => {
-      this.conn = await setup()
-    }, 50 )
-    if ( !this.hasPeers && !window.iPhone && this.state.showInviteOnStart ) {
-      this.mode = 'share'
-    }
-    this.fullscreenHandler = ( ev ) => {
-      this.isFullScreen = !!document.fullscreenElement
-    }
+    setTimeout( async () => this.conn = await setup(), 50 )
+    if ( !this.hasPeers && !window.iPhone && this.state.showInviteOnStart ) {this.mode = 'share'}
+    this.fullscreenHandler = ( ev ) => this.isFullScreen = !!document.fullscreenElement
     document.addEventListener( 'fullscreenchange', this.fullscreenHandler )
   },
-  beforeDestroy () {
+
+  beforeDestroy() {
     document.removeEventListener( 'fullscreenchange', this.fullscreenHandler )
     this.conn?.cleanup()
   }

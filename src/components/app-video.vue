@@ -18,6 +18,7 @@
       :muted="muted"
       v-else-if="stream"
       :data-fit="state.fill ? 'cover' : 'contain'"/>
+
     <div v-else
          class="video video-placeholder -content-placeholder">
       <svg xmlns="http://www.w3.org/2000/svg"
@@ -34,6 +35,7 @@
       </svg>
       <label>Ожидание подключения</label>
     </div>
+
     <div v-if="fingerprint"
          class="video video-placeholder video-fingerprint -content-placeholder -overlay -info"
          v-show="!state.maximized">
@@ -68,6 +70,7 @@
       <!--  {{ name }}-->
       <!--</label>-->
     </div>
+
     <div v-if="state.muteVideo && id === 'self'"
          class="video video-placeholder -content-placeholder">
       <svg
@@ -87,8 +90,9 @@
               x2="23"
               y2="23"></line>
       </svg>
-      <label>You turned the video off</label>
+      <label>Видео выключено</label>
     </div>
+
     <div v-if="stream && showPlayButton"
          class="video video-placeholder -content-placeholder -overlay">
       <svg
@@ -101,17 +105,14 @@
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="-icon-placeholder"
-      >
+        class="-icon-placeholder">
         <circle cx="12"
                 cy="12"
                 r="10"></circle>
         <polygon points="10 8 16 12 10 16 10 8"></polygon>
       </svg>
-      <label>Click to start video</label>
+      <label>Нажмите для запуска видео</label>
     </div>
-
-
 
   </div>
 </template>
@@ -192,8 +193,6 @@ export default {
   },
 
   methods: {
-
-
 
     async playVideo ( video ) {
       let startPlayPromise = await video.play()
