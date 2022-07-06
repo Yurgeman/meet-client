@@ -439,13 +439,8 @@ export default {
       console.log( 'detectDevice', this.detectDevice, window.location.origin )
 
       if ( confirm( 'Завершить?' ) ) {
-        // this.disabled = true
 
-        if ( this.detectDevice === 'Android' ) {
-          // https://meddoc-app-dev.cara.bi/intent://meddoc-app-dev.cara.bi/#Intent;scheme=https;package=ru.meddoc.meddoc.android;end
-          // const url = ''
-          window.location.replace( 'meddoc://' )
-        } else if ( this.detectDevice === 'iOS' ) {
+        if ( this.detectDevice === 'Android' || this.detectDevice === 'iOS' ) {
           window.location.replace( 'meddoc://' )
           setTimeout( () => window.open( 'https://med-doc.me/', '_self', '' ), 3000 )
           // setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
