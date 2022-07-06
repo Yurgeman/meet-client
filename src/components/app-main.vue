@@ -440,11 +440,17 @@ export default {
 
       if ( confirm( 'Завершить?' ) ) {
 
-        if ( this.detectDevice === 'Android' || this.detectDevice === 'iOS' ) {
+        if ( this.detectDevice === 'Android'  ) {
+          window.location.replace( 'meddoc://chat?u=url' )
+          setTimeout( () => window.open( 'https://med-doc.me/', '_self', '' ), 3000 )
+          // setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
+        }
+        if ( this.detectDevice === 'iOS' ) {
           window.location.replace( 'meddoc://' )
           setTimeout( () => window.open( 'https://med-doc.me/', '_self', '' ), 3000 )
           // setTimeout( () => window.location.replace( 'https://apps.apple.com/ru/app/meddoc/id1542321546' ), 3000 )
-        } else {
+        }
+        else {
           // window.open('','_self').close()
           const url = window.open( 'https://med-doc.me/', '_self', '' )
           // // const url = window.open( window.location.origin, '_self', '' )
